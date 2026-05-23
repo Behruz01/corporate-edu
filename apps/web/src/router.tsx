@@ -5,6 +5,7 @@ import { RoleGate } from '@/features/auth/RoleGate';
 import { EmployeeShell } from '@/components/shell/EmployeeShell';
 import { ManagerShell } from '@/components/shell/ManagerShell';
 import { AdminShell } from '@/components/shell/AdminShell';
+import { KbChatPage } from '@/features/kb/KbChatPage';
 import { HomePage } from '@/pages/HomePage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { useAuthStore } from '@/lib/stores/auth-store';
@@ -29,7 +30,8 @@ export const router = createBrowserRouter([
         children: [
           { path: '/home', element: <HomePage /> },
           { path: '/onboarding', element: <PlaceholderPage title="Onboarding" /> },
-          { path: '/kb', element: <PlaceholderPage title="Knowledge Base" /> },
+          { path: '/kb', element: <KbChatPage /> },
+          { path: '/kb/c/:id', element: <KbChatPage /> },
           { path: '/simulator', element: <PlaceholderPage title="Simulator" /> },
           { path: '/memory', element: <PlaceholderPage title="Memory" /> },
         ],

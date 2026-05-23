@@ -1,0 +1,10 @@
+{
+  "title": "Knowledge Base",
+  "placeholder": "Ask a question...",
+  "send": "Send",
+  "sources": "Sources",
+  "helpful": "Helpful",
+  "notHelpful": "Not helpful",
+  "newChat": "New chat",
+  "emptyState": "Ask the knowledge base a question."
+}
