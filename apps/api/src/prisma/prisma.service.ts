@@ -5,11 +5,11 @@ import { tenantExtension } from './tenant-extension';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(PrismaService.name);
-  readonly scoped: ReturnType<PrismaClient['$extends']>;
+  readonly scoped: PrismaClient;
 
   constructor() {
     super({ log: ['warn', 'error'] });
-    this.scoped = this.$extends(tenantExtension);
+    this.scoped = this.$extends(tenantExtension) as unknown as PrismaClient;
   }
 
   async onModuleInit(): Promise<void> {

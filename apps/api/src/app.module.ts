@@ -9,6 +9,11 @@ import { TenantsModule } from './tenants/tenants.module';
 import { HealthModule } from './health/health.module';
 import { AppController } from './app.controller';
 import { AUTH_GLOBAL_GUARDS } from './auth/auth.providers';
+import { StorageModule } from './storage/storage.module';
+import { QueueModule } from './queue/queue.module';
+import { AiModule } from './ai/ai.module';
+import { DocumentsModule } from './documents/documents.module';
+import { KbModule } from './kb/kb.module';
 
 @Module({
   imports: [
@@ -19,6 +24,11 @@ import { AUTH_GLOBAL_GUARDS } from './auth/auth.providers';
     AuthModule,
     TenantsModule,
     HealthModule,
+    StorageModule,
+    QueueModule,
+    AiModule,
+    DocumentsModule,
+    KbModule,
   ],
   controllers: [AppController],
   providers: [...AUTH_GLOBAL_GUARDS, { provide: APP_GUARD, useClass: ThrottlerGuard }],
