@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+dist
+build
+.next
+.superpowers
+storage
+**/.turbo
+**/coverage
+**/migrations

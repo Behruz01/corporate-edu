@@ -7,3 +7,15 @@ dist/
 build/
 .DS_Store
 *.log
+
+# Tooling
+.turbo/
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Editor / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

@@ -1,0 +1,31 @@
+{
+  "name": "corpmind",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.18.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "dev:api": "pnpm --filter @corpmind/api dev",
+    "dev:web": "pnpm --filter @corpmind/web dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r run test",
+    "db:up": "docker compose up -d postgres redis",
+    "db:down": "docker compose down",
+    "db:migrate": "pnpm --filter @corpmind/api prisma migrate dev",
+    "db:seed": "pnpm --filter @corpmind/api prisma db seed",
+    "db:reset": "pnpm --filter @corpmind/api prisma migrate reset --force",
+    "demo:bootstrap": "pnpm db:up && pnpm db:migrate && pnpm db:seed && pnpm ingest:demo-docs",
+    "ingest:demo-docs": "pnpm --filter @corpmind/api run ingest:demo",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  }
+}
