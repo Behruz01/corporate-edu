@@ -1,0 +1,18 @@
+{
+  "appName": "CorpMind",
+  "nav": {
+    "home": "Bosh sahifa",
+    "onboarding": "Adaptatsiya",
+    "kb": "Bilim bazasi",
+    "simulator": "Simulyator",
+    "memory": "Xotira",
+    "team": "Jamoa",
+    "admin": "Boshqaruv"
+  },
+  "actions": { "save": "Saqlash", "cancel": "Bekor qilish", "logout": "Chiqish", "submit": "Yuborish" },
+  "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" },
+  "errors": {
+    "generic": "Nimadir xato ketdi. Iltimos qaytadan urinib ko'ring.",
+    "unauthorized": "Sessiya tugadi. Qayta kiring."
+  }
+}

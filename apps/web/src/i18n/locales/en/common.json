@@ -1,0 +1,18 @@
+{
+  "appName": "CorpMind",
+  "nav": {
+    "home": "Home",
+    "onboarding": "Onboarding",
+    "kb": "Knowledge Base",
+    "simulator": "Simulator",
+    "memory": "Memory",
+    "team": "Team",
+    "admin": "Admin"
+  },
+  "actions": { "save": "Save", "cancel": "Cancel", "logout": "Logout", "submit": "Submit" },
+  "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "unauthorized": "Session expired. Please sign in again."
+  }
+}

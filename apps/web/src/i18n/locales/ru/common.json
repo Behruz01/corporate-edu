@@ -1,0 +1,18 @@
+{
+  "appName": "CorpMind",
+  "nav": {
+    "home": "Главная",
+    "onboarding": "Онбординг",
+    "kb": "База знаний",
+    "simulator": "Симулятор",
+    "memory": "Память",
+    "team": "Команда",
+    "admin": "Администрирование"
+  },
+  "actions": { "save": "Сохранить", "cancel": "Отмена", "logout": "Выйти", "submit": "Отправить" },
+  "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" },
+  "errors": {
+    "generic": "Что-то пошло не так. Повторите попытку.",
+    "unauthorized": "Сессия истекла. Войдите снова."
+  }
+}
