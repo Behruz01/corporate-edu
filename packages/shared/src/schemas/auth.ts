@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Lang, Role, UserStatus } from '../enums.js';
+import { Lang, Role, UserStatus } from '../enums';
 
 export const LoginInput = z.object({
   email: z.string().email(),

@@ -1,0 +1,655 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector", schema: "public"), pg_trgm]
+}
+
+// =====================  Enums  =====================
+
+enum Lang {
+  UZ
+  RU
+  EN
+}
+
+enum Role {
+  EMPLOYEE
+  MANAGER
+  HR_ADMIN
+  PLATFORM_ADMIN
+  KNOWLEDGE_CURATOR
+}
+
+enum UserStatus {
+  ACTIVE
+  INVITED
+  DEPARTING
+  INACTIVE
+}
+
+enum OnboardingStatus {
+  IN_PROGRESS
+  COMPLETED
+  OVERDUE
+}
+
+enum QuizType {
+  MCQ
+  TRUE_FALSE
+  SHORT_ANSWER
+}
+
+enum DocStatus {
+  PROCESSING
+  READY
+  FAILED
+  OUTDATED
+}
+
+enum ConvSource {
+  KB
+  ONBOARDING_COMPANION
+  MEMORY_PERSONA
+}
+
+enum MsgRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum SuggestionKind {
+  KB_READ
+  SIMULATOR
+  ONBOARDING
+  PERSONA_ASK
+}
+
+enum Difficulty {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum SessionStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+enum Speaker {
+  EMPLOYEE
+  AI_PERSONA
+}
+
+enum NoteKind {
+  PROJECT_REFLECTION
+  DECISION
+  PROCESS
+  LESSON
+}
+
+enum NoteVisibility {
+  PRIVATE
+  TEAM
+  ALL
+}
+
+enum PersonaSource {
+  NOTE
+  OFFBOARDING_ANSWER
+  KB_ANSWER
+  SIM_TRANSCRIPT
+}
+
+enum InterviewStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+}
+
+// =====================  Foundation  =====================
+
+model Tenant {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  industry    String
+  primaryLang Lang     @default(UZ)
+  langs       Lang[]   @default([UZ, RU, EN])
+  branding    Json?
+  createdAt   DateTime @default(now())
+
+  users                 User[]
+  documents             Document[]
+  conversations         Conversation[]
+  scenarios             Scenario[]
+  simulatorSessions     SimulatorSession[]
+  onboardingTemplates   OnboardingTemplate[]
+  onboardingAssignments OnboardingAssignment[]
+  projects              Project[]
+  knowledgeNotes        KnowledgeNote[]
+  personas              Persona[]
+  personaChunks         PersonaChunk[]
+  offboardingInterviews OffboardingInterview[]
+  pointsEvents          PointsEvent[]
+  badges                Badge[]
+  notifications         Notification[]
+  analyticsEvents       AnalyticsEvent[]
+  documentChunks        DocumentChunk[]
+}
+
+model User {
+  id            String     @id @default(cuid())
+  tenantId      String
+  email         String
+  passwordHash  String
+  fullName      String
+  role          Role       @default(EMPLOYEE)
+  department    String?
+  position      String?
+  managerId     String?
+  status        UserStatus @default(ACTIVE)
+  startedAt     DateTime?
+  departingAt   DateTime?
+  preferredLang Lang       @default(UZ)
+  pointsTotal   Int        @default(0)
+  createdAt     DateTime   @default(now())
+
+  tenant  Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  manager User?  @relation("UserManager", fields: [managerId], references: [id], onDelete: SetNull)
+  reports User[] @relation("UserManager")
+
+  refreshTokens         RefreshToken[]
+  onboardingAssignments OnboardingAssignment[]
+  conversations         Conversation[]
+  documentsUploaded     Document[]
+  simulatorSessions     SimulatorSession[]
+  knowledgeNotes        KnowledgeNote[]
+  persona               Persona?
+  offboardingInterviews OffboardingInterview[]
+  pointsEvents          PointsEvent[]
+  badges                Badge[]
+  notifications         Notification[]
+  projectMemberships    ProjectMember[]
+  analyticsEvents       AnalyticsEvent[]
+
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@index([managerId])
+}
+
+model RefreshToken {
+  id          String    @id @default(cuid())
+  userId      String
+  hashedToken String    @unique
+  expiresAt   DateTime
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// =====================  Onboarding  =====================
+
+model OnboardingTemplate {
+  id        String   @id @default(cuid())
+  tenantId  String
+  role      String
+  name      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  tenant      Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  days        OnboardingDay[]
+  assignments OnboardingAssignment[]
+
+  @@index([tenantId])
+}
+
+model OnboardingDay {
+  id           String @id @default(cuid())
+  templateId   String
+  dayNumber    Int
+  title        String
+  description  String
+  estimatedMin Int
+
+  template OnboardingTemplate      @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  topics   OnboardingTopic[]
+  quiz     Quiz?
+  progress OnboardingDayProgress[]
+
+  @@index([templateId])
+}
+
+model OnboardingTopic {
+  id          String   @id @default(cuid())
+  dayId       String
+  order       Int
+  title       String
+  content     String
+  documentIds String[]
+
+  day OnboardingDay @relation(fields: [dayId], references: [id], onDelete: Cascade)
+
+  @@index([dayId])
+}
+
+model OnboardingAssignment {
+  id         String           @id @default(cuid())
+  tenantId   String
+  userId     String
+  templateId String
+  startedAt  DateTime
+  currentDay Int              @default(1)
+  status     OnboardingStatus @default(IN_PROGRESS)
+  createdAt  DateTime         @default(now())
+
+  tenant      Tenant                  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user        User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  template    OnboardingTemplate      @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  dayProgress OnboardingDayProgress[]
+
+  @@index([tenantId])
+  @@index([userId])
+}
+
+model OnboardingDayProgress {
+  id           String    @id @default(cuid())
+  assignmentId String
+  dayId        String
+  startedAt    DateTime?
+  completedAt  DateTime?
+  quizScore    Int?
+  timeSpentSec Int       @default(0)
+
+  assignment OnboardingAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  day        OnboardingDay        @relation(fields: [dayId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentId, dayId])
+}
+
+model Quiz {
+  id        String         @id @default(cuid())
+  dayId     String         @unique
+  day       OnboardingDay  @relation(fields: [dayId], references: [id], onDelete: Cascade)
+  questions QuizQuestion[]
+}
+
+model QuizQuestion {
+  id          String   @id @default(cuid())
+  quizId      String
+  type        QuizType
+  prompt      String
+  options     Json?
+  correct     Json
+  explanation String?
+
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+// =====================  KB + RAG  =====================
+
+model Document {
+  id           String    @id @default(cuid())
+  tenantId     String
+  title        String
+  filename     String
+  mimeType     String
+  storageKey   String
+  lang         Lang
+  version      Int       @default(1)
+  status       DocStatus @default(PROCESSING)
+  category     String?
+  visibility   String[]
+  uploadedById String
+  chunkCount   Int       @default(0)
+  pages        Int?
+  createdAt    DateTime  @default(now())
+
+  tenant     Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  uploadedBy User            @relation(fields: [uploadedById], references: [id])
+  chunks     DocumentChunk[]
+  citations  Citation[]
+
+  @@index([tenantId])
+}
+
+model DocumentChunk {
+  id         String   @id @default(cuid())
+  tenantId   String
+  documentId String
+  chunkIndex Int
+  text       String
+  page       Int?
+  section    String?
+  tokenCount Int
+  createdAt  DateTime @default(now())
+
+  tenant    Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  document  Document   @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  citations Citation[]
+
+  @@index([tenantId])
+  @@index([documentId])
+}
+
+model Conversation {
+  id         String     @id @default(cuid())
+  tenantId   String
+  userId     String
+  source     ConvSource
+  contextRef String?
+  title      String?
+  createdAt  DateTime   @default(now())
+
+  tenant   Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@index([tenantId, userId])
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String
+  role           MsgRole
+  content        String
+  lang           Lang?
+  rating         Int?
+  noAnswerFlag   Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  conversation Conversation        @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  citations    Citation[]
+  nextStep     NextStepSuggestion?
+
+  @@index([conversationId])
+}
+
+model Citation {
+  id         String  @id @default(cuid())
+  messageId  String
+  documentId String
+  chunkId    String
+  page       Int?
+  section    String?
+  snippet    String
+  score      Float
+
+  message  Message       @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  document Document      @relation(fields: [documentId], references: [id])
+  chunk    DocumentChunk @relation(fields: [chunkId], references: [id])
+
+  @@index([messageId])
+}
+
+model NextStepSuggestion {
+  id        String         @id @default(cuid())
+  messageId String         @unique
+  kind      SuggestionKind
+  refId     String
+  label     String
+
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+}
+
+// =====================  Simulator  =====================
+
+model Scenario {
+  id          String     @id @default(cuid())
+  tenantId    String
+  category    String
+  title       String
+  brief       String
+  personaDesc String
+  difficulty  Difficulty
+  lang        Lang
+  active      Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+
+  tenant   Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  criteria ScenarioCriterion[]
+  sessions SimulatorSession[]
+
+  @@index([tenantId])
+}
+
+model ScenarioCriterion {
+  id         String @id @default(cuid())
+  scenarioId String
+  dimension  String
+  weight     Float  @default(1.0)
+  rubric     String
+
+  scenario Scenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+
+  @@index([scenarioId])
+}
+
+model SimulatorSession {
+  id         String        @id @default(cuid())
+  tenantId   String
+  userId     String
+  scenarioId String
+  attemptNum Int           @default(1)
+  status     SessionStatus
+  startedAt  DateTime      @default(now())
+  endedAt    DateTime?
+
+  tenant   Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  scenario Scenario        @relation(fields: [scenarioId], references: [id])
+  turns    SimulatorTurn[]
+  score    SimulatorScore?
+
+  @@index([tenantId, userId])
+}
+
+model SimulatorTurn {
+  id        String   @id @default(cuid())
+  sessionId String
+  turnIndex Int
+  speaker   Speaker
+  text      String
+  createdAt DateTime @default(now())
+
+  session SimulatorSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+}
+
+model SimulatorScore {
+  id              String   @id @default(cuid())
+  sessionId       String   @unique
+  overall         Int
+  dimensionScores Json
+  feedback        Json
+  weakAreas       Json
+  createdAt       DateTime @default(now())
+
+  session SimulatorSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+// =====================  Memory  =====================
+
+model Project {
+  id          String   @id @default(cuid())
+  tenantId    String
+  name        String
+  department  String?
+  description String?
+  status      String   @default("active")
+  createdAt   DateTime @default(now())
+
+  tenant  Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  members ProjectMember[]
+  notes   KnowledgeNote[]
+
+  @@index([tenantId])
+}
+
+model ProjectMember {
+  id        String @id @default(cuid())
+  projectId String
+  userId    String
+  role      String
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+}
+
+model KnowledgeNote {
+  id         String         @id @default(cuid())
+  tenantId   String
+  authorId   String
+  projectId  String?
+  kind       NoteKind
+  prompt     String?
+  text       String
+  visibility NoteVisibility @default(PRIVATE)
+  tags       String[]       @default([])
+  createdAt  DateTime       @default(now())
+
+  tenant  Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  author  User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, authorId])
+}
+
+model Persona {
+  id             String    @id @default(cuid())
+  tenantId       String
+  userId         String    @unique
+  voiceProfile   String
+  expertiseTags  String[]  @default([])
+  expertiseScore Json      @default("{}")
+  lastTrainedAt  DateTime?
+  createdAt      DateTime  @default(now())
+
+  tenant Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chunks PersonaChunk[]
+
+  @@index([tenantId])
+}
+
+model PersonaChunk {
+  id          String        @id @default(cuid())
+  tenantId    String
+  personaId   String
+  source      PersonaSource
+  sourceRefId String
+  text        String
+  tokenCount  Int
+  createdAt   DateTime      @default(now())
+
+  tenant  Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  persona Persona @relation(fields: [personaId], references: [id], onDelete: Cascade)
+
+  @@index([personaId])
+  @@index([tenantId])
+}
+
+model OffboardingInterview {
+  id          String          @id @default(cuid())
+  tenantId    String
+  userId      String
+  triggeredBy String
+  status      InterviewStatus @default(SCHEDULED)
+  startedAt   DateTime?
+  completedAt DateTime?
+
+  tenant    Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions OffboardingQA[]
+
+  @@index([tenantId, userId])
+}
+
+model OffboardingQA {
+  id             String  @id @default(cuid())
+  interviewId    String
+  order          Int
+  questionText   String
+  questionKind   String
+  answerText     String?
+  answerAudioKey String?
+  durationSec    Int?
+
+  interview OffboardingInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+
+  @@index([interviewId])
+}
+
+// =====================  Supporting  =====================
+
+model PointsEvent {
+  id        String   @id @default(cuid())
+  tenantId  String
+  userId    String
+  reason    String
+  points    Int
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, userId])
+}
+
+model Badge {
+  id        String   @id @default(cuid())
+  tenantId  String
+  userId    String
+  code      String
+  awardedAt DateTime @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, code])
+}
+
+model Notification {
+  id        String    @id @default(cuid())
+  tenantId  String
+  userId    String
+  kind      String
+  title     String
+  body      String
+  link      String?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, userId, readAt])
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  tenantId  String
+  userId    String?
+  event     String
+  payload   Json
+  createdAt DateTime @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, event, createdAt])
+}
