@@ -751,7 +751,7 @@ Rubrics injected dynamically from `ScenarioCriterion.rubric`. After scoring, **K
 Mirrors KB RAG, but:
 - Vector index: `PersonaChunk` filtered to the persona
 - System prompt is first-person ("Men Aziz Karimov... Bu javob mening yozuvlarimdan olingan")
-- Confidence: if top similarity < 0.55, respond "Bu haqida menda yetarli ma'lumot yo'q, [manager]'ga murojaat qiling"
+- Confidence: if top retrieval cosine similarity < 0.55 (calibrated against seed-data smoke checks; tunable via `PERSONA_CONFIDENCE_THRESHOLD` env), respond "Bu haqida menda yetarli ma'lumot yo'q, [manager]'ga murojaat qiling"
 - Every answer cites the source note/interview/turn
 
 **Indexing job:** new KnowledgeNote, OffboardingAnswer, or high-scoring SimulatorTurn → enqueue → embed → insert `PersonaChunk`.
@@ -908,7 +908,7 @@ Admin:     /admin, /admin/users[, /new, /:id],
 
 ### 4.3 Demo flow (5-minute pitch)
 
-**Pre-seed:** SQB tenant; 5 users (Aziz Karimov departing, Malika manager, Bekzod new hire, Nigora HR admin, +1 employee); 6–8 documents; "Credit Officer 5-day" onboarding template (Bekzod assigned); 3 scenarios (Urgent Client, Suspicious Transaction, Confused Retiree); Aziz persona with 3 notes + 8 offboarding QAs + 20 KB answers; 12 pre-seeded simulator sessions for manager dashboard history.
+**Pre-seed:** SQB tenant; 5 users (Aziz Karimov — Senior Credit Officer, status DEPARTING; Malika Yusupova — Credit Department Head, MANAGER; Bekzod Toirov — Credit Officer, EMPLOYEE, started today; Nigora Saidova — HR Admin; Dilshod Rakhimov — Credit Officer, EMPLOYEE, 2 weeks tenure for dashboard variety); 6–8 documents; "Credit Officer 5-day" onboarding template (Bekzod assigned); 3 scenarios (Urgent Client, Suspicious Transaction, Confused Retiree); Aziz persona with 3 notes + 8 offboarding QAs + 20 KB answers; 12 pre-seeded simulator sessions for manager dashboard history.
 
 **Scene 1 — Day 1 onboarding (60s):** Bekzod logs in → `/onboarding` → companion grounded answer → 3-question quiz → Day 2 unlock animation + points.
 
@@ -971,7 +971,7 @@ corporate-edu/
     "db:migrate": "pnpm --filter @corpmind/api prisma migrate dev",
     "db:seed": "pnpm --filter @corpmind/api prisma db seed",
     "db:reset": "pnpm --filter @corpmind/api prisma migrate reset --force",
-    "demo:bootstrap": "pnpm db:up && pnpm db:migrate && pnpm db:seed",
+    "demo:bootstrap": "pnpm db:up && pnpm db:migrate && pnpm db:seed && pnpm ingest:demo-docs",
     "ingest:demo-docs": "pnpm --filter @corpmind/api run ingest:demo"
   }
 }
