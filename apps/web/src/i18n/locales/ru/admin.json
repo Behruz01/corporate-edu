@@ -1,0 +1,94 @@
+{
+  "overview": {
+    "title": "Настройки админа",
+    "subtitle": "Управление пользователями, документами, сценариями, онбордингом, проектами и настройками tenant."
+  },
+  "users": {
+    "title": "Пользователи",
+    "subtitle": "Пользователи tenant и их статус доступа.",
+    "create": "Создать пользователя"
+  },
+  "documents": {
+    "title": "Документы",
+    "subtitle": "Файлы базы знаний и статус обработки.",
+    "upload": "Загрузить документ",
+    "drop": "Перетащите файл сюда или выберите",
+    "dropHint": "Загруженные файлы преобразуются в поисковые фрагменты знаний."
+  },
+  "scenarios": {
+    "title": "Сценарии",
+    "subtitle": "Сценарии симулятора для сотрудников.",
+    "create": "Создать сценарий"
+  },
+  "onboarding": {
+    "title": "Шаблоны онбординга",
+    "subtitle": "Просмотр планов онбординга и дней.",
+    "daysCount": "{{count}} дней",
+    "dayNumber": "День {{number}}"
+  },
+  "projects": {
+    "title": "Проекты",
+    "subtitle": "Проекты knowledge memory и вклады сотрудников.",
+    "create": "Создать проект",
+    "members": "{{count}} участников",
+    "notes": "{{count}} заметок"
+  },
+  "settings": {
+    "title": "Настройки",
+    "subtitle": "Брендинг tenant и отраслевой контекст.",
+    "branding": "Брендинг",
+    "industryAgnostic": "This platform is industry-agnostic"
+  },
+  "fields": {
+    "email": "Email",
+    "fullName": "Полное имя",
+    "role": "Роль",
+    "department": "Отдел",
+    "status": "Статус",
+    "title": "Название",
+    "file": "Файл",
+    "category": "Категория",
+    "chunks": "Фрагменты",
+    "difficulty": "Сложность",
+    "brief": "Описание",
+    "personaDesc": "Описание персоны",
+    "minutes": "минут",
+    "name": "Название",
+    "description": "Описание",
+    "noDepartment": "Без отдела",
+    "platformName": "Название платформы",
+    "primaryColor": "Основной цвет",
+    "industry": "Отрасль"
+  },
+  "actions": {
+    "actions": "Действия",
+    "save": "Сохранить",
+    "saving": "Сохранение...",
+    "upload": "Загрузить",
+    "uploading": "Загрузка...",
+    "delete": "Удалить",
+    "reprocess": "Переобработать",
+    "activate": "Активировать",
+    "deactivate": "Деактивировать"
+  },
+  "states": {
+    "loading": "Загрузка...",
+    "error": "Не удалось загрузить данные.",
+    "active": "Активен",
+    "inactive": "Неактивен"
+  },
+  "messages": {
+    "saved": "Сохранено",
+    "uploaded": "Загружено",
+    "deleted": "Удалено",
+    "failed": "Действие не выполнено"
+  },
+  "industries": {
+    "banking": "Банкинг",
+    "it": "IT",
+    "retail": "Ритейл",
+    "healthcare": "Здравоохранение",
+    "manufacturing": "Производство",
+    "government": "Государство"
+  }
+}

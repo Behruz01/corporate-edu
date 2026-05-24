@@ -1,0 +1,7 @@
+{
+  "record": "Record voice",
+  "stop": "Stop recording",
+  "processing": "Transcribing",
+  "micDenied": "Microphone access was denied",
+  "error": "Could not transcribe voice"
+}

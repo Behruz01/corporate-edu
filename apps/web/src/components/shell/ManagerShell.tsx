@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { LangSwitcher } from '@/components/feature/LangSwitcher';
 import { Button } from '@/components/ui/button';
 import { PointsPill } from '@/features/gamification/PointsPill';
+import { NotificationBell } from '@/features/notifications/NotificationBell';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { logout } from '@/lib/api/auth';
 
@@ -40,6 +41,7 @@ export function ManagerShell(): JSX.Element {
           <span className="font-medium text-sm">{user?.fullName} · {t('nav.team')}</span>
           <div className="flex items-center gap-2">
             <PointsPill />
+            <NotificationBell />
             <LangSwitcher />
             <Button variant="ghost" size="sm" onClick={() => void onLogout()}>{t('actions.logout')}</Button>
           </div>

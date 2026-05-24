@@ -1,0 +1,94 @@
+{
+  "overview": {
+    "title": "Admin configuration",
+    "subtitle": "Manage users, documents, scenarios, onboarding, projects, and tenant settings."
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Tenant users and access status.",
+    "create": "Create user"
+  },
+  "documents": {
+    "title": "Documents",
+    "subtitle": "Knowledge base source files and ingestion status.",
+    "upload": "Upload document",
+    "drop": "Drop a file here or click to choose",
+    "dropHint": "Uploads are processed into searchable knowledge chunks."
+  },
+  "scenarios": {
+    "title": "Scenarios",
+    "subtitle": "Simulator scenarios available to employees.",
+    "create": "Create scenario"
+  },
+  "onboarding": {
+    "title": "Onboarding templates",
+    "subtitle": "Read-only overview of onboarding plans and days.",
+    "daysCount": "{{count}} days",
+    "dayNumber": "Day {{number}}"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Knowledge memory projects and contributions.",
+    "create": "Create project",
+    "members": "{{count}} members",
+    "notes": "{{count}} notes"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Tenant branding and industry context.",
+    "branding": "Branding",
+    "industryAgnostic": "This platform is industry-agnostic"
+  },
+  "fields": {
+    "email": "Email",
+    "fullName": "Full name",
+    "role": "Role",
+    "department": "Department",
+    "status": "Status",
+    "title": "Title",
+    "file": "File",
+    "category": "Category",
+    "chunks": "Chunks",
+    "difficulty": "Difficulty",
+    "brief": "Brief",
+    "personaDesc": "Persona description",
+    "minutes": "minutes",
+    "name": "Name",
+    "description": "Description",
+    "noDepartment": "No department",
+    "platformName": "Platform name",
+    "primaryColor": "Primary color",
+    "industry": "Industry"
+  },
+  "actions": {
+    "actions": "Actions",
+    "save": "Save",
+    "saving": "Saving...",
+    "upload": "Upload",
+    "uploading": "Uploading...",
+    "delete": "Delete",
+    "reprocess": "Reprocess",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
+  },
+  "states": {
+    "loading": "Loading...",
+    "error": "Could not load data.",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "messages": {
+    "saved": "Saved",
+    "uploaded": "Uploaded",
+    "deleted": "Deleted",
+    "failed": "Action failed"
+  },
+  "industries": {
+    "banking": "Banking",
+    "it": "IT",
+    "retail": "Retail",
+    "healthcare": "Healthcare",
+    "manufacturing": "Manufacturing",
+    "government": "Government"
+  }
+}

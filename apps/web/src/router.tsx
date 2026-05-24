@@ -23,8 +23,14 @@ import { EmployeeDetailPage } from '@/features/dashboard/EmployeeDetailPage';
 import { ReportsPage } from '@/features/dashboard/ReportsPage';
 import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage';
 import { LeaderboardPage } from '@/features/gamification/LeaderboardPage';
+import { UsersPage as AdminUsersPage } from '@/features/admin/UsersPage';
+import { DocumentsPage as AdminDocumentsPage } from '@/features/admin/DocumentsPage';
+import { ScenariosPage as AdminScenariosPage } from '@/features/admin/ScenariosPage';
+import { OnboardingTemplatesPage as AdminOnboardingTemplatesPage } from '@/features/admin/OnboardingTemplatesPage';
+import { ProjectsPage as AdminProjectsPage } from '@/features/admin/ProjectsPage';
+import { SettingsPage as AdminSettingsPage } from '@/features/admin/SettingsPage';
+import { NotificationsPage } from '@/features/notifications/NotificationsPage';
 import { HomePage } from '@/pages/HomePage';
-import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { useAuthStore } from '@/lib/stores/auth-store';
 
 function RootRedirect(): JSX.Element {
@@ -61,6 +67,7 @@ export const router = createBrowserRouter([
           { path: '/memory/who-knows', element: <WhoKnowsPage /> },
           { path: '/memory/offboarding', element: <OffboardingPage /> },
           { path: '/leaderboard', element: <LeaderboardPage /> },
+          { path: '/notifications', element: <NotificationsPage /> },
         ],
       },
 
@@ -85,12 +92,12 @@ export const router = createBrowserRouter([
             element: <AdminShell />,
             children: [
               { path: '/admin', element: <AdminDashboardPage /> },
-              { path: '/admin/users', element: <PlaceholderPage title="Users" /> },
-              { path: '/admin/documents', element: <PlaceholderPage title="Documents" /> },
-              { path: '/admin/scenarios', element: <PlaceholderPage title="Scenarios" /> },
-              { path: '/admin/onboarding', element: <PlaceholderPage title="Onboarding templates" /> },
-              { path: '/admin/projects', element: <PlaceholderPage title="Projects" /> },
-              { path: '/admin/settings', element: <PlaceholderPage title="Settings" /> },
+              { path: '/admin/users', element: <AdminUsersPage /> },
+              { path: '/admin/documents', element: <AdminDocumentsPage /> },
+              { path: '/admin/scenarios', element: <AdminScenariosPage /> },
+              { path: '/admin/onboarding', element: <AdminOnboardingTemplatesPage /> },
+              { path: '/admin/projects', element: <AdminProjectsPage /> },
+              { path: '/admin/settings', element: <AdminSettingsPage /> },
             ],
           },
         ],

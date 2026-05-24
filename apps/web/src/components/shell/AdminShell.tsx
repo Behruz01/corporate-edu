@@ -2,6 +2,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { LangSwitcher } from '@/components/feature/LangSwitcher';
 import { Button } from '@/components/ui/button';
+import { NotificationBell } from '@/features/notifications/NotificationBell';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { logout } from '@/lib/api/auth';
 
@@ -39,6 +40,7 @@ export function AdminShell(): JSX.Element {
         <header className="h-14 border-b flex items-center justify-between px-4 gap-3">
           <span className="font-medium text-sm">{user?.fullName}</span>
           <div className="flex items-center gap-2">
+            <NotificationBell />
             <LangSwitcher />
             <Button variant="ghost" size="sm" onClick={() => void onLogout()}>{t('actions.logout')}</Button>
           </div>

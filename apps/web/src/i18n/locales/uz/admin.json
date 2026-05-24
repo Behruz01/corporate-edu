@@ -1,0 +1,94 @@
+{
+  "overview": {
+    "title": "Admin sozlamalari",
+    "subtitle": "Foydalanuvchilar, hujjatlar, ssenariylar, onboarding, loyihalar va tenant sozlamalarini boshqaring."
+  },
+  "users": {
+    "title": "Foydalanuvchilar",
+    "subtitle": "Tenant foydalanuvchilari va kirish holati.",
+    "create": "Foydalanuvchi yaratish"
+  },
+  "documents": {
+    "title": "Hujjatlar",
+    "subtitle": "Bilimlar bazasi fayllari va qayta ishlash holati.",
+    "upload": "Hujjat yuklash",
+    "drop": "Faylni shu yerga tashlang yoki tanlang",
+    "dropHint": "Yuklangan fayllar qidiriladigan bilim bo'laklariga ajratiladi."
+  },
+  "scenarios": {
+    "title": "Ssenariylar",
+    "subtitle": "Xodimlar uchun simulator ssenariylari.",
+    "create": "Ssenariy yaratish"
+  },
+  "onboarding": {
+    "title": "Onboarding shablonlari",
+    "subtitle": "Onboarding rejalari va kunlari bo'yicha o'qish uchun ko'rinish.",
+    "daysCount": "{{count}} kun",
+    "dayNumber": "{{number}}-kun"
+  },
+  "projects": {
+    "title": "Loyihalar",
+    "subtitle": "Knowledge memory loyihalari va hissalar.",
+    "create": "Loyiha yaratish",
+    "members": "{{count}} a'zo",
+    "notes": "{{count}} qayd"
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "subtitle": "Tenant brendingi va soha konteksti.",
+    "branding": "Brending",
+    "industryAgnostic": "This platform is industry-agnostic"
+  },
+  "fields": {
+    "email": "Email",
+    "fullName": "To'liq ism",
+    "role": "Rol",
+    "department": "Bo'lim",
+    "status": "Holat",
+    "title": "Sarlavha",
+    "file": "Fayl",
+    "category": "Kategoriya",
+    "chunks": "Bo'laklar",
+    "difficulty": "Qiyinlik",
+    "brief": "Qisqa tavsif",
+    "personaDesc": "Persona tavsifi",
+    "minutes": "daqiqa",
+    "name": "Nomi",
+    "description": "Tavsif",
+    "noDepartment": "Bo'lim yo'q",
+    "platformName": "Platforma nomi",
+    "primaryColor": "Asosiy rang",
+    "industry": "Soha"
+  },
+  "actions": {
+    "actions": "Amallar",
+    "save": "Saqlash",
+    "saving": "Saqlanmoqda...",
+    "upload": "Yuklash",
+    "uploading": "Yuklanmoqda...",
+    "delete": "O'chirish",
+    "reprocess": "Qayta ishlash",
+    "activate": "Faollashtirish",
+    "deactivate": "O'chirish"
+  },
+  "states": {
+    "loading": "Yuklanmoqda...",
+    "error": "Ma'lumot yuklanmadi.",
+    "active": "Faol",
+    "inactive": "Nofaol"
+  },
+  "messages": {
+    "saved": "Saqlandi",
+    "uploaded": "Yuklandi",
+    "deleted": "O'chirildi",
+    "failed": "Amal bajarilmadi"
+  },
+  "industries": {
+    "banking": "Bank",
+    "it": "IT",
+    "retail": "Chakana savdo",
+    "healthcare": "Sog'liqni saqlash",
+    "manufacturing": "Ishlab chiqarish",
+    "government": "Davlat"
+  }
+}
