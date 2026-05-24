@@ -1,19 +1,30 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import {
+  LayoutDashboard,
+  Users,
+  FileText,
+  Drama,
+  GraduationCap,
+  FolderKanban,
+  Settings,
+  LogOut,
+} from 'lucide-react';
 import { LangSwitcher } from '@/components/feature/LangSwitcher';
 import { Button } from '@/components/ui/button';
 import { NotificationBell } from '@/features/notifications/NotificationBell';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { logout } from '@/lib/api/auth';
+import { Sidebar, SidebarNav, Topbar } from './shell-parts';
 
 const NAV = [
-  { to: '/admin', label: 'Dashboard' },
-  { to: '/admin/users', label: 'Users' },
-  { to: '/admin/documents', label: 'Documents' },
-  { to: '/admin/scenarios', label: 'Scenarios' },
-  { to: '/admin/onboarding', label: 'Onboarding' },
-  { to: '/admin/projects', label: 'Projects' },
-  { to: '/admin/settings', label: 'Settings' },
+  { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { to: '/admin/users', label: 'Users', icon: Users },
+  { to: '/admin/documents', label: 'Documents', icon: FileText },
+  { to: '/admin/scenarios', label: 'Scenarios', icon: Drama },
+  { to: '/admin/onboarding', label: 'Onboarding', icon: GraduationCap },
+  { to: '/admin/projects', label: 'Projects', icon: FolderKanban },
+  { to: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 
 export function AdminShell(): JSX.Element {
@@ -21,31 +32,38 @@ export function AdminShell(): JSX.Element {
   const user = useAuthStore((s) => s.user);
   const clear = useAuthStore((s) => s.clear);
   const nav = useNavigate();
+
   async function onLogout(): Promise<void> {
-    await logout().catch(() => {}); clear(); nav('/login');
+    await logout().catch(() => {});
+    clear();
+    nav('/login');
   }
+
   return (
     <div className="flex min-h-screen">
-      <aside className="hidden md:flex w-60 border-r p-4 flex-col gap-1 bg-muted/30">
-        <div className="text-lg font-semibold px-3 py-2">{t('appName')} · Admin</div>
-        {NAV.map((n) => (
-          <NavLink key={n.to} to={n.to} end
-            className={({ isActive }) =>
-              `px-3 py-2 rounded-md text-sm ${isActive ? 'bg-primary/10 text-primary font-medium' : 'hover:bg-accent'}`}>
-            {n.label}
-          </NavLink>
-        ))}
-      </aside>
-      <div className="flex-1 flex flex-col">
-        <header className="h-14 border-b flex items-center justify-between px-4 gap-3">
-          <span className="font-medium text-sm">{user?.fullName}</span>
-          <div className="flex items-center gap-2">
-            <NotificationBell />
-            <LangSwitcher />
-            <Button variant="ghost" size="sm" onClick={() => void onLogout()}>{t('actions.logout')}</Button>
+      <Sidebar brandSubtitle="Admin">
+        <SidebarNav items={NAV} />
+      </Sidebar>
+      <div className="flex-1 flex flex-col min-w-0">
+        <Topbar
+          title={user?.fullName ?? ''}
+          subtitle="Administration"
+          right={
+            <>
+              <NotificationBell />
+              <LangSwitcher />
+              <Button variant="ghost" size="sm" className="gap-2" onClick={() => void onLogout()}>
+                <LogOut className="h-4 w-4" />
+                {t('actions.logout')}
+              </Button>
+            </>
+          }
+        />
+        <main className="flex-1 px-6 py-8 lg:px-10">
+          <div className="mx-auto w-full max-w-6xl animate-rise">
+            <Outlet />
           </div>
-        </header>
-        <main className="flex-1 p-6 bg-background"><Outlet /></main>
+        </main>
       </div>
     </div>
   );

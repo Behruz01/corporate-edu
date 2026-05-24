@@ -4,50 +4,132 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71% 4%;
+    /* Premium institutional fintech — warm paper + deep teal + amber */
+    --background: 40 33% 97%;
+    --foreground: 185 32% 12%;
+
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 185 32% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 9% 18%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
-    --accent: 173 80% 40%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 221 83% 53%;
-    --radius: 0.75rem;
+    --popover-foreground: 185 32% 12%;
+
+    --primary: 174 66% 23%;
+    --primary-foreground: 40 40% 97%;
+
+    --secondary: 40 24% 92%;
+    --secondary-foreground: 185 28% 18%;
+
+    --muted: 40 22% 93%;
+    --muted-foreground: 185 12% 40%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 185 45% 12%;
+
+    --destructive: 4 72% 48%;
+    --destructive-foreground: 40 40% 97%;
+
+    --success: 152 55% 36%;
+    --warning: 38 92% 48%;
+
+    --border: 40 18% 87%;
+    --input: 40 18% 85%;
+    --ring: 174 66% 30%;
+    --radius: 0.85rem;
+
+    /* Dark teal sidebar rail */
+    --sidebar: 185 47% 9%;
+    --sidebar-foreground: 40 18% 80%;
+    --sidebar-muted: 185 14% 52%;
+    --sidebar-active: 174 60% 38%;
+    --sidebar-border: 185 28% 17%;
+    --brand: 38 92% 55%;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 210 20% 98%;
-    --card: 224 71% 6%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71% 6%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217 32% 12%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 217 32% 12%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 173 80% 40%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 217 91% 60%;
+    --background: 185 42% 7%;
+    --foreground: 40 24% 92%;
+    --card: 185 38% 10%;
+    --card-foreground: 40 24% 92%;
+    --popover: 185 38% 10%;
+    --popover-foreground: 40 24% 92%;
+    --primary: 173 58% 42%;
+    --primary-foreground: 185 45% 8%;
+    --secondary: 185 24% 16%;
+    --secondary-foreground: 40 24% 92%;
+    --muted: 185 22% 15%;
+    --muted-foreground: 185 12% 60%;
+    --accent: 38 92% 55%;
+    --accent-foreground: 185 45% 10%;
+    --destructive: 4 64% 44%;
+    --destructive-foreground: 40 24% 92%;
+    --border: 185 24% 18%;
+    --input: 185 24% 18%;
+    --ring: 173 58% 46%;
+    --sidebar: 185 50% 6%;
+    --sidebar-foreground: 40 18% 80%;
+    --sidebar-muted: 185 14% 50%;
+    --sidebar-active: 174 60% 40%;
+    --sidebar-border: 185 28% 14%;
+    --brand: 38 92% 55%;
   }
 
-  html, body, #root { @apply h-full; }
-  body { @apply bg-background text-foreground antialiased; }
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
+    /* layered warm atmosphere instead of flat white */
+    background-image:
+      radial-gradient(1200px 600px at 12% -8%, hsl(174 60% 90% / 0.55), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, hsl(38 90% 88% / 0.4), transparent 55%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Unbounded', 'Manrope', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.3);
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* refined thin scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(185 14% 70% / 0.5);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(185 14% 55% / 0.7); background-clip: content-box; }
+}
+
+@layer utilities {
+  .text-brand { color: hsl(var(--brand)); }
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  @keyframes cm-rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-rise { animation: cm-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-rise-1 { animation: cm-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both; }
+  .animate-rise-2 { animation: cm-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
+  .animate-rise-3 { animation: cm-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both; }
 }
