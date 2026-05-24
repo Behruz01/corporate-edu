@@ -25,3 +25,5 @@ Sanksiya ostidagi shaxs yoki tashkilotga to'lov, maqsadi noaniq "consulting" yok
 ## Mijoz bilan muloqot standarti
 
 Xodim mijozga kurs, komissiya, bajarilish muddati va ehtimoliy qo'shimcha so'rovlarni oldindan tushuntiradi. SWIFT o'tkazmasi odatda 1-3 ish kuni ichida yetib boradi, lekin korrespondent bank tekshiruvi sababli 5 ish kunigacha cho'zilishi mumkin. Mijoz shoshilinch to'lov so'rasa, "urgent" belgisi qo'yilishi mumkin, ammo AML va sanksiya tekshiruvi hech qachon chetlab o'tilmaydi.
+
+Mijozga har doim kvitansiya, ariza raqami va keyingi tekshiruv uchun aloqa kanali beriladi. Rekvizitdagi bitta harf xatosi ham to'lov qaytishi yoki qo'shimcha komissiyaga sabab bo'lishi mumkin, shuning uchun xodim benefitsiar nomini hujjat bilan solishtirib tasdiqlaydi.
