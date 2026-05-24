@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { MicButton } from '@/features/voice/MicButton';
 import { fetchPersona, streamPersonaAsk } from './api';
 import type { PersonaAskDonePayload, PersonaSourceRef } from './types';
 
@@ -142,6 +143,10 @@ export function PersonaAskPage(): JSX.Element {
               event.currentTarget.form?.requestSubmit();
             }
           }}
+        />
+        <MicButton
+          disabled={streaming}
+          onTranscript={(text) => setQuestion((v) => (v ? `${v} ${text}` : text))}
         />
         <Button type="submit" disabled={streaming || question.trim().length < 2}>
           <Send className="h-4 w-4" aria-hidden="true" />

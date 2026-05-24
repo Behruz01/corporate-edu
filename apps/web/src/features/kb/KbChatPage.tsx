@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { MicButton } from '@/features/voice/MicButton';
 import { api } from '@/lib/api/client';
 import { streamKbAsk } from '@/lib/sse';
 import { ConversationList, type ConversationListItem } from '@/features/kb/components/ConversationList';
@@ -176,6 +177,10 @@ export function KbChatPage(): JSX.Element {
                 event.currentTarget.form?.requestSubmit();
               }
             }}
+          />
+          <MicButton
+            disabled={streaming}
+            onTranscript={(text) => setQuestion((v) => (v ? `${v} ${text}` : text))}
           />
           <Button type="submit" disabled={streaming || question.trim().length < 2}>
             <Send className="h-4 w-4" aria-hidden="true" />
