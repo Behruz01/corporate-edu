@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BadgesStrip } from '@/features/gamification/BadgesStrip';
 import { useAuthStore } from '@/lib/stores/auth-store';
 
 export function HomePage(): JSX.Element {
@@ -17,6 +18,7 @@ export function HomePage(): JSX.Element {
           <p>Points: {user?.pointsTotal}</p>
         </CardContent>
       </Card>
+      <BadgesStrip />
     </div>
   );
 }

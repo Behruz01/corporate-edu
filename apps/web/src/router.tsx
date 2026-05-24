@@ -22,6 +22,7 @@ import { TeamOverviewPage } from '@/features/dashboard/TeamOverviewPage';
 import { EmployeeDetailPage } from '@/features/dashboard/EmployeeDetailPage';
 import { ReportsPage } from '@/features/dashboard/ReportsPage';
 import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage';
+import { LeaderboardPage } from '@/features/gamification/LeaderboardPage';
 import { HomePage } from '@/pages/HomePage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { useAuthStore } from '@/lib/stores/auth-store';
@@ -59,6 +60,7 @@ export const router = createBrowserRouter([
           { path: '/memory/personas/:id', element: <PersonaAskPage /> },
           { path: '/memory/who-knows', element: <WhoKnowsPage /> },
           { path: '/memory/offboarding', element: <OffboardingPage /> },
+          { path: '/leaderboard', element: <LeaderboardPage /> },
         ],
       },
 

@@ -1,0 +1,22 @@
+{
+  "points": "Points",
+  "leaderboard": "Leaderboard",
+  "badges": {
+    "title": "Badges",
+    "labels": {
+      "DAY_5": "Completed 5 days",
+      "FIRST_SIM": "First simulator",
+      "KNOWLEDGE_CONTRIBUTOR": "Knowledge contributor",
+      "TOP_SCORER": "Top scorer"
+    }
+  },
+  "rank": "Rank",
+  "name": "Name",
+  "loadingBadges": "Loading badges...",
+  "badgesError": "Could not load badges.",
+  "states": {
+    "loading": "Loading...",
+    "error": "Could not load data.",
+    "empty": "No data yet."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "points": "Ballar",
+  "leaderboard": "Yetakchilar jadvali",
+  "badges": {
+    "title": "Nishonlar",
+    "labels": {
+      "DAY_5": "5 kunni yakunladi",
+      "FIRST_SIM": "Birinchi simulyator",
+      "KNOWLEDGE_CONTRIBUTOR": "Bilim ulashuvchi",
+      "TOP_SCORER": "Yuqori natija"
+    }
+  },
+  "rank": "O'rin",
+  "name": "Ism",
+  "loadingBadges": "Nishonlar yuklanmoqda...",
+  "badgesError": "Nishonlarni yuklab bo'lmadi.",
+  "states": {
+    "loading": "Yuklanmoqda...",
+    "error": "Ma'lumotlarni yuklab bo'lmadi.",
+    "empty": "Hali ma'lumot yo'q."
+  }
+}

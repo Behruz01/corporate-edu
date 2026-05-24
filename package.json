@@ -24,7 +24,7 @@
     "db:reset": "pnpm --filter @corpmind/api exec prisma db push --force-reset --accept-data-loss && pnpm db:vector",
     "seed:onboarding": "pnpm --filter @corpmind/api exec tsx prisma/seed-onboarding.ts",
     "seed:demo": "pnpm --filter @corpmind/api exec tsx prisma/seed-demo.ts",
-    "demo:bootstrap": "pnpm db:up && pnpm db:push && pnpm db:vector && pnpm db:seed && pnpm seed:onboarding && pnpm seed:demo && pnpm ingest:demo-docs",
+    "demo:bootstrap": "pnpm db:migrate && pnpm db:seed && pnpm seed:onboarding && pnpm seed:demo && pnpm ingest:demo-docs",
     "ingest:demo-docs": "pnpm --filter @corpmind/api run ingest:demo",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\""
   },
