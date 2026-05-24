@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { fetchKnowledgeRisk, fetchMostAsked, fetchSkillGap } from './dashboard-api';
 import { QueryState, ScoreBar } from './components/DashboardPrimitives';
-import { formatDate } from './dashboard-format';
+import { formatDate, categoryLabel, dimensionLabel } from './dashboard-format';
 
 export function ReportsPage(): JSX.Element {
   const { t } = useTranslation('dashboard');
@@ -45,13 +45,13 @@ export function ReportsPage(): JSX.Element {
               {skillGapQuery.data?.categories.map((category) => (
                 <div key={category.category} className="space-y-3 border-b pb-4 last:border-0 last:pb-0">
                   <div className="flex items-center justify-between gap-3">
-                    <div className="font-medium">{category.category}</div>
+                    <div className="font-medium">{categoryLabel(category.category)}</div>
                     <ScoreBar value={category.avgScore} />
                   </div>
                   <div className="space-y-2">
                     {category.dimensions.map((dimension) => (
                       <div key={dimension.dimension} className="flex items-center justify-between gap-3 text-sm">
-                        <span className="text-muted-foreground">{dimension.dimension}</span>
+                        <span className="text-muted-foreground">{dimensionLabel(dimension.dimension)}</span>
                         <span className="tabular-nums">{dimension.avgScore}</span>
                       </div>
                     ))}

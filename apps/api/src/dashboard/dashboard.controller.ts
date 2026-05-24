@@ -44,4 +44,10 @@ export class DashboardController {
   adminOverview(@CurrentUser() user: AuthPrincipal): Promise<unknown> {
     return this.dashboard.adminOverview(user);
   }
+
+  @Get('admin/analytics/trends')
+  @Roles(Role.HR_ADMIN, Role.PLATFORM_ADMIN)
+  adminTrends(@CurrentUser() user: AuthPrincipal): Promise<unknown> {
+    return this.dashboard.activityTrends(user);
+  }
 }

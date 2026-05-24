@@ -144,3 +144,10 @@ export async function fetchAdminAnalyticsOverview(): Promise<AdminAnalyticsOverv
   const { data } = await api.get<AdminAnalyticsOverview>('/admin/analytics/overview');
   return data;
 }
+
+export type ActivityTrendPoint = { week: string; simulator: number; questions: number; notes: number };
+
+export async function fetchActivityTrends(): Promise<ActivityTrendPoint[]> {
+  const { data } = await api.get<ActivityTrendPoint[]>('/admin/analytics/trends');
+  return data;
+}

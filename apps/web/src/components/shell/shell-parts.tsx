@@ -24,7 +24,7 @@ export function BrandMark({ subtitle }: { subtitle?: string | undefined }): JSX.
 
 export function Sidebar({ children, brandSubtitle }: { children: ReactNode; brandSubtitle?: string | undefined }): JSX.Element {
   return (
-    <aside className="bg-grain hidden w-64 shrink-0 flex-col gap-6 bg-sidebar px-4 py-6 text-sidebar-foreground md:flex">
+    <aside className="bg-grain sticky top-0 hidden h-screen w-64 shrink-0 flex-col gap-6 self-start bg-sidebar px-4 py-6 text-sidebar-foreground md:flex">
       <BrandMark subtitle={brandSubtitle} />
       <div className="flex-1 overflow-y-auto">{children}</div>
     </aside>

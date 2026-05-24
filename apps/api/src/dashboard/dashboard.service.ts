@@ -318,6 +318,37 @@ export class DashboardService {
     };
   }
 
+  async activityTrends(user: AuthPrincipal): Promise<unknown> {
+    if (!this.isAdmin(user.role)) throw new NotFoundException('Analytics not found');
+    const weeks = 8;
+    const weekMs = 7 * 86_400_000;
+    const now = Date.now();
+    const since = new Date(now - weeks * weekMs);
+    const [sessions, conversations, notes] = await Promise.all([
+      this.prisma.scoped.simulatorSession.findMany({ where: { startedAt: { gte: since } }, select: { startedAt: true } }),
+      this.prisma.scoped.conversation.findMany({ where: { createdAt: { gte: since } }, select: { createdAt: true } }),
+      this.prisma.scoped.knowledgeNote.findMany({ where: { createdAt: { gte: since } }, select: { createdAt: true } }),
+    ]);
+    const buckets = Array.from({ length: weeks }, (_, i) => {
+      const start = new Date(now - (weeks - 1 - i) * weekMs);
+      return { week: `${start.getMonth() + 1}/${start.getDate()}`, simulator: 0, questions: 0, notes: 0 };
+    });
+    const bucketOf = (d: Date): number => weeks - 1 - Math.floor((now - d.getTime()) / weekMs);
+    for (const s of sessions) {
+      const b = buckets[bucketOf(s.startedAt)];
+      if (b) b.simulator += 1;
+    }
+    for (const c of conversations) {
+      const b = buckets[bucketOf(c.createdAt)];
+      if (b) b.questions += 1;
+    }
+    for (const n of notes) {
+      const b = buckets[bucketOf(n.createdAt)];
+      if (b) b.notes += 1;
+    }
+    return buckets;
+  }
+
   private async loadUsersForScope(user: AuthPrincipal): Promise<UserDashboardRecord[]> {
     const scope = this.scopeFor(user);
     const users = await this.prisma.scoped.user.findMany({
