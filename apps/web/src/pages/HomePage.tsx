@@ -35,9 +35,16 @@ export function HomePage(): JSX.Element {
     <div className="space-y-6">
       <section className="animate-rise overflow-hidden rounded-2xl border bg-primary px-6 py-7 text-primary-foreground shadow-glow md:px-8 md:py-9">
         <div className="max-w-3xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-primary-foreground/85">
-            <Sparkles className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
-            {t('home.eyebrow')}
+          <div className="mb-4 flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-primary-foreground/85">
+              <Sparkles className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
+              {t('home.eyebrow')}
+            </span>
+            {user?.role ? (
+              <span className="inline-flex items-center rounded-md bg-brand px-2.5 py-1 text-xs font-semibold text-[hsl(185_47%_9%)]">
+                {roleLabel(user.role)}
+              </span>
+            ) : null}
           </div>
           <h1 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-4xl">
             {t('home.welcome', { name: firstName })}
@@ -153,4 +160,15 @@ function StatCard({
 function getFirstName(fullName: string | undefined, fallback: string): string {
   const [firstName] = fullName?.trim().split(/\s+/) ?? [];
   return firstName && firstName.length > 0 ? firstName : fallback;
+}
+
+function roleLabel(role: string): string {
+  const map: Record<string, string> = {
+    EMPLOYEE: 'Xodim',
+    MANAGER: 'Menejer',
+    HR_ADMIN: 'HR Admin',
+    PLATFORM_ADMIN: 'Platforma admini',
+    KNOWLEDGE_CURATOR: 'Bilim kuratori',
+  };
+  return map[role] ?? role;
 }

@@ -10,6 +10,12 @@ import { useAuthStore } from '@/lib/stores/auth-store';
 import { LangSwitcher } from '@/components/feature/LangSwitcher';
 import { toast } from 'sonner';
 
+const DEMO_ACCOUNTS = [
+  { email: 'bekzod@sqb.uz', role: 'Xodim', tone: 'bg-primary/10 text-primary' },
+  { email: 'malika@sqb.uz', role: 'Menejer', tone: 'bg-accent/20 text-accent-foreground' },
+  { email: 'nigora@sqb.uz', role: 'HR Admin', tone: 'bg-foreground/10 text-foreground' },
+] as const;
+
 export function LoginPage(): JSX.Element {
   const { t } = useTranslation(['auth', 'common']);
   const nav = useNavigate();
@@ -124,12 +130,30 @@ export function LoginPage(): JSX.Element {
             </Button>
           </form>
 
-          <p className="mt-6 rounded-lg border border-border bg-muted/50 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
-            Demo: <span className="font-medium text-foreground">bekzod@sqb.uz</span> ·{' '}
-            <span className="font-medium text-foreground">malika@sqb.uz</span> ·{' '}
-            <span className="font-medium text-foreground">nigora@sqb.uz</span> — parol{' '}
-            <span className="font-medium text-foreground">Demo123!</span>
-          </p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/50 p-3">
+            <div className="mb-2 px-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+              Demo hisoblar · parol Demo123!
+            </div>
+            <div className="flex flex-col gap-1.5">
+              {DEMO_ACCOUNTS.map((acc) => (
+                <button
+                  key={acc.email}
+                  type="button"
+                  onClick={() => {
+                    setEmail(acc.email);
+                    setPassword('Demo123!');
+                  }}
+                  className="flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm transition-colors hover:bg-accent/15"
+                >
+                  <span className="font-medium text-foreground">{acc.email}</span>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium ${acc.tone}`}>
+                    {acc.role}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div className="mt-1 px-2 text-[11px] text-muted-foreground">Tez kirish uchun bosing</div>
+          </div>
         </div>
       </div>
     </div>
