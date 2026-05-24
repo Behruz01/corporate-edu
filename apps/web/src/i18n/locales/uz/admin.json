@@ -37,7 +37,7 @@
     "title": "Sozlamalar",
     "subtitle": "Tenant brendingi va soha konteksti.",
     "branding": "Brending",
-    "industryAgnostic": "This platform is industry-agnostic"
+    "industryAgnostic": "Bu platforma sohaga bog'liq emas — istalgan tarmoq uchun moslashtiriladi"
   },
   "fields": {
     "email": "Email",

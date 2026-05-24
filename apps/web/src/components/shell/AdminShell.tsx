@@ -18,13 +18,13 @@ import { logout } from '@/lib/api/auth';
 import { Sidebar, SidebarNav, Topbar } from './shell-parts';
 
 const NAV = [
-  { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
-  { to: '/admin/users', label: 'Users', icon: Users },
-  { to: '/admin/documents', label: 'Documents', icon: FileText },
-  { to: '/admin/scenarios', label: 'Scenarios', icon: Drama },
-  { to: '/admin/onboarding', label: 'Onboarding', icon: GraduationCap },
-  { to: '/admin/projects', label: 'Projects', icon: FolderKanban },
-  { to: '/admin/settings', label: 'Settings', icon: Settings },
+  { to: '/admin', label: 'Boshqaruv paneli', icon: LayoutDashboard, end: true },
+  { to: '/admin/users', label: 'Xodimlar', icon: Users },
+  { to: '/admin/documents', label: 'Hujjatlar', icon: FileText },
+  { to: '/admin/scenarios', label: 'Stsenariylar', icon: Drama },
+  { to: '/admin/onboarding', label: 'Adaptatsiya', icon: GraduationCap },
+  { to: '/admin/projects', label: 'Loyihalar', icon: FolderKanban },
+  { to: '/admin/settings', label: 'Sozlamalar', icon: Settings },
 ];
 
 export function AdminShell(): JSX.Element {
