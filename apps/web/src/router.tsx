@@ -10,6 +10,12 @@ import { ScenarioBriefPage } from '@/features/simulator/ScenarioBriefPage';
 import { ScenarioLibraryPage } from '@/features/simulator/ScenarioLibraryPage';
 import { ScorePage } from '@/features/simulator/ScorePage';
 import { SessionPage } from '@/features/simulator/SessionPage';
+import { MemoryHubPage } from '@/features/memory/MemoryHubPage';
+import { ProjectsPage } from '@/features/memory/ProjectsPage';
+import { ProjectDetailPage } from '@/features/memory/ProjectDetailPage';
+import { PersonaAskPage } from '@/features/memory/PersonaAskPage';
+import { WhoKnowsPage } from '@/features/memory/WhoKnowsPage';
+import { OffboardingPage } from '@/features/memory/OffboardingPage';
 import { HomePage } from '@/pages/HomePage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { useAuthStore } from '@/lib/stores/auth-store';
@@ -40,7 +46,12 @@ export const router = createBrowserRouter([
           { path: '/simulator/:scenarioId', element: <ScenarioBriefPage /> },
           { path: '/simulator/session/:id', element: <SessionPage /> },
           { path: '/simulator/session/:id/score', element: <ScorePage /> },
-          { path: '/memory', element: <PlaceholderPage title="Memory" /> },
+          { path: '/memory', element: <MemoryHubPage /> },
+          { path: '/memory/projects', element: <ProjectsPage /> },
+          { path: '/memory/projects/:id', element: <ProjectDetailPage /> },
+          { path: '/memory/personas/:id', element: <PersonaAskPage /> },
+          { path: '/memory/who-knows', element: <WhoKnowsPage /> },
+          { path: '/memory/offboarding', element: <OffboardingPage /> },
         ],
       },
 

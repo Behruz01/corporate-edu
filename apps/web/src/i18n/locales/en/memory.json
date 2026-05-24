@@ -1,0 +1,90 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "empty": "No records yet."
+  },
+  "hub": {
+    "title": "Employee Memory",
+    "subtitle": "Capture working knowledge, preserve departing expertise, and find the right expert faster.",
+    "projects": "Projects",
+    "whoKnows": "Who knows",
+    "notes": "My notes",
+    "personas": "Personas",
+    "offboardingTitle": "Assigned offboarding interview",
+    "offboardingBody": "Continue answering handoff questions so your expertise can be preserved.",
+    "continueInterview": "Continue"
+  },
+  "notes": {
+    "new": "New note",
+    "newBody": "Saved notes are embedded into your persona memory.",
+    "tags": "Tags, comma separated",
+    "placeholder": "What decision, process, lesson, or project context should others remember?",
+    "save": "Save note",
+    "delete": "Delete note"
+  },
+  "noteKind": {
+    "PROJECT_REFLECTION": "Project reflection",
+    "DECISION": "Decision",
+    "PROCESS": "Process",
+    "LESSON": "Lesson"
+  },
+  "visibility": {
+    "PRIVATE": "Private",
+    "TEAM": "Team",
+    "ALL": "All"
+  },
+  "personas": {
+    "ask": "Ask persona",
+    "back": "Back to memory",
+    "confidenceReady": "RAG confidence enabled",
+    "chat": "Persona chat",
+    "emptyChat": "Ask a question grounded in this employee's memory.",
+    "placeholder": "Ask about a process, decision, or project...",
+    "send": "Ask",
+    "confidence": "Confidence {{value}}%"
+  },
+  "projects": {
+    "title": "Memory projects",
+    "subtitle": "Group project knowledge, members, and related notes.",
+    "name": "Project name",
+    "department": "Department",
+    "description": "Description",
+    "create": "Create",
+    "noDescription": "No description provided.",
+    "members": "{{count}} members",
+    "notes": "{{count}} notes",
+    "open": "Open",
+    "back": "Back to projects",
+    "addMember": "Add member",
+    "userId": "User ID",
+    "role": "Project role",
+    "add": "Add",
+    "membersTitle": "Members",
+    "notesTitle": "Notes"
+  },
+  "whoKnows": {
+    "title": "Who knows?",
+    "subtitle": "Search expertise tags and recent memory notes to find the best person to ask.",
+    "back": "Back to memory",
+    "placeholder": "Search for early repayment, AML, scoring...",
+    "search": "Search",
+    "ready": "Enter a topic to rank experts.",
+    "score": "Match score {{score}}"
+  },
+  "offboarding": {
+    "title": "Offboarding memory interview",
+    "back": "Back to memory",
+    "none": "You do not have an assigned offboarding interview.",
+    "progress": "{{done}} of {{total}} answered",
+    "readyTitle": "Ready to start",
+    "readyBody": "Answer question by question. Drafts autosave while you type.",
+    "start": "Start interview",
+    "question": "Question {{current}} of {{total}}",
+    "answer": "Write your answer...",
+    "previous": "Previous",
+    "save": "Save",
+    "next": "Next",
+    "complete": "Complete"
+  }
+}

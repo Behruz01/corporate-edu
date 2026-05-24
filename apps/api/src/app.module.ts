@@ -18,6 +18,7 @@ import { ScenariosModule } from './scenarios/scenarios.module';
 import { SimulatorModule } from './simulator/simulator.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { OnboardingModule } from './onboarding/onboarding.module';
+import { MemoryModule } from './memory/memory.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { OnboardingModule } from './onboarding/onboarding.module';
     SimulatorModule,
     DashboardModule,
     OnboardingModule,
+    MemoryModule,
   ],
   controllers: [AppController],
   providers: [...AUTH_GLOBAL_GUARDS, { provide: APP_GUARD, useClass: ThrottlerGuard }],

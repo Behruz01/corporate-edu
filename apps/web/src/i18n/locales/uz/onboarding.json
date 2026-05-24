@@ -1,0 +1,16 @@
+{
+  "title": "Adaptatsiya",
+  "historyTitle": "Adaptatsiya tarixi",
+  "historySubtitle": "Tugatilgan kunlar va quiz natijalari.",
+  "quizTitle": "Kun yakuni quiz",
+  "loading": "Yuklanmoqda...",
+  "error": "Adaptatsiya ma'lumotlarini yuklab bo'lmadi.",
+  "empty": "Sizga hali adaptatsiya dasturi biriktirilmagan.",
+  "locked": "Hozircha ochiq kun topilmadi.",
+  "started": "Kun boshlandi.",
+  "completedProgram": "Adaptatsiya dasturi yakunlandi.",
+  "programUnlocked": "Dastur yakunlandi. Ballar hisobingizga qo'shildi.",
+  "dayUnlocked": "{{day}}-kun ochildi. {{points}} ball qo'shildi.",
+  "historyEmpty": "Hali tugatilgan kunlar yo'q.",
+  "notCompleted": "Tugatilmagan"
+}

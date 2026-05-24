@@ -1,0 +1,16 @@
+{
+  "title": "Onboarding",
+  "historyTitle": "Onboarding history",
+  "historySubtitle": "Completed days and quiz scores.",
+  "quizTitle": "End-of-day quiz",
+  "loading": "Loading...",
+  "error": "Could not load onboarding data.",
+  "empty": "No onboarding program has been assigned yet.",
+  "locked": "No unlocked day is available yet.",
+  "started": "Day started.",
+  "completedProgram": "Onboarding program completed.",
+  "programUnlocked": "Program completed. Points were added to your account.",
+  "dayUnlocked": "Day {{day}} unlocked. {{points}} points added.",
+  "historyEmpty": "No completed days yet.",
+  "notCompleted": "Not completed"
+}

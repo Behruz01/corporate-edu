@@ -200,7 +200,7 @@ export class DashboardService {
     };
   }
 
-  async mostAsked(user: AuthPrincipal): Promise<unknown> {
+  async mostAsked(_user: AuthPrincipal): Promise<unknown> {
     const conversations = await this.prisma.scoped.conversation.findMany({
       where: { source: ConvSource.KB },
       include: {

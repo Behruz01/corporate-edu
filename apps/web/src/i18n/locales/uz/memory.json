@@ -1,0 +1,90 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi.",
+    "empty": "Hozircha yozuv yo'q."
+  },
+  "hub": {
+    "title": "Xodim xotirasi",
+    "subtitle": "Ish bilimlarini saqlang, ketayotgan xodim tajribasini yo'qotmang va kerakli ekspertni tez toping.",
+    "projects": "Loyihalar",
+    "whoKnows": "Kim biladi",
+    "notes": "Mening yozuvlarim",
+    "personas": "Personalar",
+    "offboardingTitle": "Sizga offboarding intervyu biriktirilgan",
+    "offboardingBody": "Tajriba saqlanishi uchun topshirish savollariga javob berishda davom eting.",
+    "continueInterview": "Davom etish"
+  },
+  "notes": {
+    "new": "Yangi yozuv",
+    "newBody": "Saqlangan yozuvlar persona xotirangizga embedding qilinadi.",
+    "tags": "Teglar, vergul bilan",
+    "placeholder": "Qaysi qaror, jarayon, saboq yoki loyiha konteksti esda qolishi kerak?",
+    "save": "Yozuvni saqlash",
+    "delete": "Yozuvni o'chirish"
+  },
+  "noteKind": {
+    "PROJECT_REFLECTION": "Loyiha xulosasi",
+    "DECISION": "Qaror",
+    "PROCESS": "Jarayon",
+    "LESSON": "Saboq"
+  },
+  "visibility": {
+    "PRIVATE": "Shaxsiy",
+    "TEAM": "Jamoa",
+    "ALL": "Hamma"
+  },
+  "personas": {
+    "ask": "Personadan so'rash",
+    "back": "Xotiraga qaytish",
+    "confidenceReady": "RAG ishonch yoqilgan",
+    "chat": "Persona chat",
+    "emptyChat": "Xodim xotirasiga tayangan savol bering.",
+    "placeholder": "Jarayon, qaror yoki loyiha haqida so'rang...",
+    "send": "So'rash",
+    "confidence": "Ishonch {{value}}%"
+  },
+  "projects": {
+    "title": "Xotira loyihalari",
+    "subtitle": "Loyiha bilimlari, a'zolar va tegishli yozuvlarni guruhlang.",
+    "name": "Loyiha nomi",
+    "department": "Bo'lim",
+    "description": "Tavsif",
+    "create": "Yaratish",
+    "noDescription": "Tavsif kiritilmagan.",
+    "members": "{{count}} a'zo",
+    "notes": "{{count}} yozuv",
+    "open": "Ochish",
+    "back": "Loyihalarga qaytish",
+    "addMember": "A'zo qo'shish",
+    "userId": "User ID",
+    "role": "Loyihadagi rol",
+    "add": "Qo'shish",
+    "membersTitle": "A'zolar",
+    "notesTitle": "Yozuvlar"
+  },
+  "whoKnows": {
+    "title": "Kim biladi?",
+    "subtitle": "Eng mos ekspertni topish uchun expertise teglari va so'nggi xotira yozuvlarini qidiring.",
+    "back": "Xotiraga qaytish",
+    "placeholder": "Erta to'lash, AML, scoring...",
+    "search": "Qidirish",
+    "ready": "Ekspertlarni saralash uchun mavzu kiriting.",
+    "score": "Moslik balli {{score}}"
+  },
+  "offboarding": {
+    "title": "Offboarding xotira intervyusi",
+    "back": "Xotiraga qaytish",
+    "none": "Sizga offboarding intervyu biriktirilmagan.",
+    "progress": "{{done}} / {{total}} javob berildi",
+    "readyTitle": "Boshlashga tayyor",
+    "readyBody": "Savollarga ketma-ket javob bering. Matn yozilayotganda avtomatik saqlanadi.",
+    "start": "Intervyuni boshlash",
+    "question": "{{current}} / {{total}} savol",
+    "answer": "Javobingizni yozing...",
+    "previous": "Oldingi",
+    "save": "Saqlash",
+    "next": "Keyingi",
+    "complete": "Yakunlash"
+  }
+}

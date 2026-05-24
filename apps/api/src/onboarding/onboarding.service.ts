@@ -382,7 +382,7 @@ export class OnboardingService {
   private async getCurrentAssignment(user: AuthPrincipal): Promise<AssignmentForCurrentDay | null> {
     return this.prisma.scoped.onboardingAssignment.findFirst({
       where: { userId: user.userId },
-      orderBy: [{ status: 'asc' }, { createdAt: 'desc' }],
+      orderBy: { createdAt: 'desc' },
       include: {
         template: {
           include: {
