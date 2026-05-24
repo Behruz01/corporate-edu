@@ -54,10 +54,10 @@ export function SidebarNav({ items, label }: { items: NavItem[]; label?: string 
             end={item.end ?? false}
             className={({ isActive }) =>
               [
-                'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
+                'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all',
                 isActive
-                  ? 'bg-[hsl(174_60%_38%/0.16)] text-white'
-                  : 'text-sidebar-foreground/75 hover:bg-white/5 hover:text-white',
+                  ? 'bg-white/10 font-semibold text-white ring-1 ring-inset ring-white/10'
+                  : 'font-medium text-sidebar-foreground/70 hover:bg-white/[0.06] hover:text-white',
               ].join(' ')
             }
           >
