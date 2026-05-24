@@ -1,0 +1,63 @@
+{
+  "common": {
+    "loading": "Simulator yuklanmoqda...",
+    "error": "Simulator ma'lumotlarini yuklab bo'lmadi."
+  },
+  "difficulty": {
+    "BASIC": "Boshlang'ich",
+    "INTERMEDIATE": "O'rta",
+    "ADVANCED": "Murakkab"
+  },
+  "library": {
+    "eyebrow": "Roleplay simulator",
+    "title": "Mijoz bilan murakkab suhbatlarni mashq qiling",
+    "subtitle": "Ssenariyni tanlang, suhbatni boshqaring, keyin ball, feedback va zaif joylar uchun Knowledge Bridge oling.",
+    "category": "Kategoriya",
+    "difficulty": "Daraja",
+    "allCategories": "Barcha kategoriyalar",
+    "allDifficulties": "Barcha darajalar",
+    "empty": "Bu filtrlar bo'yicha aktiv ssenariy yo'q.",
+    "start": "Boshlash"
+  },
+  "brief": {
+    "back": "Kutubxonaga qaytish",
+    "begin": "Sessiyani boshlash",
+    "persona": "Persona",
+    "criteria": "Baholash mezonlari",
+    "startError": "Sessiyani boshlab bo'lmadi."
+  },
+  "session": {
+    "back": "Kutubxona",
+    "end": "Sessiyani yakunlash",
+    "endError": "Sessiyani baholab bo'lmadi.",
+    "empty": "Roleplayni birinchi xodim javobini yozishdan boshlang.",
+    "employee": "Siz",
+    "persona": "Persona",
+    "typing": "yozmoqda...",
+    "placeholder": "Javobingizni yozing...",
+    "send": "Yuborish"
+  },
+  "score": {
+    "overall": "umumiy ball",
+    "radar": "Dimension radar",
+    "feedback": "Feedback",
+    "bridge": "Knowledge Bridge",
+    "openKb": "KB ochish",
+    "noWeakAreas": "Zaif joylar aniqlanmadi.",
+    "missing": "Bu sessiya hali baholanmagan.",
+    "backToSession": "Sessiyaga qaytish",
+    "back": "Simulatorga qaytish"
+  },
+  "dimensions": {
+    "correctness": "To'g'rilik",
+    "tone": "Ohang",
+    "processAdherence": "Jarayon",
+    "resolution": "Yechim",
+    "compliance": "Compliance"
+  },
+  "severity": {
+    "praise": "Yaxshi",
+    "minor": "Mayda",
+    "major": "Muhim"
+  }
+}

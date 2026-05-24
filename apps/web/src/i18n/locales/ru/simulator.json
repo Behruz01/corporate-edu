@@ -1,0 +1,63 @@
+{
+  "common": {
+    "loading": "Загрузка симулятора...",
+    "error": "Не удалось загрузить данные симулятора."
+  },
+  "difficulty": {
+    "BASIC": "Базовый",
+    "INTERMEDIATE": "Средний",
+    "ADVANCED": "Сложный"
+  },
+  "library": {
+    "eyebrow": "Roleplay simulator",
+    "title": "Тренировка сложных клиентских разговоров",
+    "subtitle": "Выберите сценарий, проведите разговор и получите оценку, обратную связь и Knowledge Bridge по слабым зонам.",
+    "category": "Категория",
+    "difficulty": "Сложность",
+    "allCategories": "Все категории",
+    "allDifficulties": "Все уровни",
+    "empty": "Нет активных сценариев по этим фильтрам.",
+    "start": "Начать"
+  },
+  "brief": {
+    "back": "Назад к библиотеке",
+    "begin": "Начать сессию",
+    "persona": "Персона",
+    "criteria": "Критерии оценки",
+    "startError": "Не удалось начать сессию."
+  },
+  "session": {
+    "back": "Библиотека",
+    "end": "Завершить сессию",
+    "endError": "Не удалось оценить сессию.",
+    "empty": "Начните roleplay с первого ответа сотрудника.",
+    "employee": "Вы",
+    "persona": "Персона",
+    "typing": "печатает...",
+    "placeholder": "Напишите ответ...",
+    "send": "Отправить"
+  },
+  "score": {
+    "overall": "общий балл",
+    "radar": "Радар навыков",
+    "feedback": "Обратная связь",
+    "bridge": "Knowledge Bridge",
+    "openKb": "Открыть KB",
+    "noWeakAreas": "Слабые зоны не обнаружены.",
+    "missing": "Эта сессия еще не оценена.",
+    "backToSession": "Вернуться к сессии",
+    "back": "Назад к симулятору"
+  },
+  "dimensions": {
+    "correctness": "Корректность",
+    "tone": "Тон",
+    "processAdherence": "Процесс",
+    "resolution": "Решение",
+    "compliance": "Комплаенс"
+  },
+  "severity": {
+    "praise": "Сильная сторона",
+    "minor": "Небольшое",
+    "major": "Важное"
+  }
+}

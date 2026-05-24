@@ -1,0 +1,57 @@
+{
+  "states": {
+    "loading": "Dashboard ma'lumotlari yuklanmoqda...",
+    "error": "Dashboard ma'lumotlarini yuklab bo'lmadi.",
+    "empty": "Hozircha ma'lumot yo'q."
+  },
+  "status": {
+    "on_track": "Joyida",
+    "behind": "Ortga qolgan",
+    "at_risk": "Riskda"
+  },
+  "team": {
+    "title": "Jamoa ko'rinishi",
+    "subtitle": "Xodimlar, onboarding, simulyator tayyorgarligi va bilim hissasi.",
+    "reports": "Hisobotlar",
+    "reportsTable": "Xodimlar",
+    "employee": "Xodim",
+    "department": "Bo'lim",
+    "onboarding": "Onboarding",
+    "simScore": "Simulyator bali",
+    "knowledge": "Bilim",
+    "status": "Holat",
+    "open": "Ochish",
+    "openEmployee": "{{name}} profilini ochish"
+  },
+  "employee": {
+    "back": "Jamoaga qaytish",
+    "timeline": "Vaqt chizig'i",
+    "score": "{{score}} ball",
+    "simAttempts": "Simulyator urinishlari",
+    "notes": "Bilim qaydlari",
+    "personalNote": "Shaxsiy qayd"
+  },
+  "reports": {
+    "title": "Menejer hisobotlari",
+    "subtitle": "Ko'nikma bo'shliqlari, bilim riski va eng ko'p so'ralgan savollar.",
+    "skillGap": "Ko'nikma bo'shlig'i",
+    "knowledgeRisk": "Bilim riski",
+    "departing": "Offboarding tugallanmagan ketayotgan xodimlar",
+    "highContribution": "Bilim hissasi yuqori xodimlar",
+    "projectsNoNotes": "Qaydsiz loyihalar",
+    "mostAsked": "Eng ko'p so'ralgan",
+    "unansweredTotal": "Javobsiz jami",
+    "asked": "{{count}} marta so'ralgan",
+    "unanswered": "{{count}} javobsiz"
+  },
+  "admin": {
+    "title": "Admin dashboard",
+    "subtitle": "Platformadan foydalanish va yakunlash ko'rsatkichlari.",
+    "users": "Foydalanuvchilar",
+    "documents": "Hujjatlar",
+    "simulatorSessions": "Simulyator sessiyalari",
+    "messages": "Xabarlar",
+    "knowledgeNotes": "Bilim qaydlari",
+    "completionRate": "Onboarding yakunlanishi"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "states": {
+    "loading": "Loading dashboard data...",
+    "error": "Dashboard data could not be loaded.",
+    "empty": "No data yet."
+  },
+  "status": {
+    "on_track": "On track",
+    "behind": "Behind",
+    "at_risk": "At risk"
+  },
+  "team": {
+    "title": "Team overview",
+    "subtitle": "Direct reports, onboarding progress, simulator readiness, and knowledge contributions.",
+    "reports": "Reports",
+    "reportsTable": "Reports",
+    "employee": "Employee",
+    "department": "Department",
+    "onboarding": "Onboarding",
+    "simScore": "Simulator score",
+    "knowledge": "Knowledge",
+    "status": "Status",
+    "open": "Open",
+    "openEmployee": "Open {{name}}"
+  },
+  "employee": {
+    "back": "Back to team",
+    "timeline": "Timeline",
+    "score": "Score {{score}}",
+    "simAttempts": "Simulator attempts",
+    "notes": "Knowledge notes",
+    "personalNote": "Personal note"
+  },
+  "reports": {
+    "title": "Manager reports",
+    "subtitle": "Skill gaps, knowledge risk, and most asked questions.",
+    "skillGap": "Skill gap",
+    "knowledgeRisk": "Knowledge risk",
+    "departing": "Departing with incomplete offboarding",
+    "highContribution": "High contribution users",
+    "projectsNoNotes": "Projects with no notes",
+    "mostAsked": "Most asked",
+    "unansweredTotal": "Unanswered total",
+    "asked": "{{count}} asked",
+    "unanswered": "{{count}} unanswered"
+  },
+  "admin": {
+    "title": "Admin dashboard",
+    "subtitle": "Platform usage and completion indicators.",
+    "users": "Users",
+    "documents": "Documents",
+    "simulatorSessions": "Simulator sessions",
+    "messages": "Messages",
+    "knowledgeNotes": "Knowledge notes",
+    "completionRate": "Onboarding completion"
+  }
+}

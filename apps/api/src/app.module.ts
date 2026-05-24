@@ -14,6 +14,10 @@ import { QueueModule } from './queue/queue.module';
 import { AiModule } from './ai/ai.module';
 import { DocumentsModule } from './documents/documents.module';
 import { KbModule } from './kb/kb.module';
+import { ScenariosModule } from './scenarios/scenarios.module';
+import { SimulatorModule } from './simulator/simulator.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { OnboardingModule } from './onboarding/onboarding.module';
 
 @Module({
   imports: [
@@ -29,6 +33,10 @@ import { KbModule } from './kb/kb.module';
     AiModule,
     DocumentsModule,
     KbModule,
+    ScenariosModule,
+    SimulatorModule,
+    DashboardModule,
+    OnboardingModule,
   ],
   controllers: [AppController],
   providers: [...AUTH_GLOBAL_GUARDS, { provide: APP_GUARD, useClass: ThrottlerGuard }],

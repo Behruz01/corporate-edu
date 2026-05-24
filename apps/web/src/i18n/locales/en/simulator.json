@@ -1,0 +1,63 @@
+{
+  "common": {
+    "loading": "Loading simulator...",
+    "error": "Could not load simulator data."
+  },
+  "difficulty": {
+    "BASIC": "Basic",
+    "INTERMEDIATE": "Intermediate",
+    "ADVANCED": "Advanced"
+  },
+  "library": {
+    "eyebrow": "Roleplay simulator",
+    "title": "Practice hard customer moments",
+    "subtitle": "Choose a scenario, handle the conversation, then get scored feedback and a knowledge bridge for weak areas.",
+    "category": "Category",
+    "difficulty": "Difficulty",
+    "allCategories": "All categories",
+    "allDifficulties": "All difficulties",
+    "empty": "No active scenarios match these filters.",
+    "start": "Start"
+  },
+  "brief": {
+    "back": "Back to library",
+    "begin": "Begin session",
+    "persona": "Persona",
+    "criteria": "Scoring criteria",
+    "startError": "Could not start the session."
+  },
+  "session": {
+    "back": "Library",
+    "end": "End session",
+    "endError": "Could not score the session.",
+    "empty": "Start the roleplay by writing the first employee response.",
+    "employee": "You",
+    "persona": "Persona",
+    "typing": "typing...",
+    "placeholder": "Write your response...",
+    "send": "Send"
+  },
+  "score": {
+    "overall": "overall score",
+    "radar": "Dimension radar",
+    "feedback": "Feedback",
+    "bridge": "Knowledge Bridge",
+    "openKb": "Open KB",
+    "noWeakAreas": "No weak areas were detected.",
+    "missing": "This session has not been scored yet.",
+    "backToSession": "Return to session",
+    "back": "Back to simulator"
+  },
+  "dimensions": {
+    "correctness": "Correctness",
+    "tone": "Tone",
+    "processAdherence": "Process",
+    "resolution": "Resolution",
+    "compliance": "Compliance"
+  },
+  "severity": {
+    "praise": "Praise",
+    "minor": "Minor",
+    "major": "Major"
+  }
+}

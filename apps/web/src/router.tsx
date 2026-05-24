@@ -6,6 +6,10 @@ import { EmployeeShell } from '@/components/shell/EmployeeShell';
 import { ManagerShell } from '@/components/shell/ManagerShell';
 import { AdminShell } from '@/components/shell/AdminShell';
 import { KbChatPage } from '@/features/kb/KbChatPage';
+import { ScenarioBriefPage } from '@/features/simulator/ScenarioBriefPage';
+import { ScenarioLibraryPage } from '@/features/simulator/ScenarioLibraryPage';
+import { ScorePage } from '@/features/simulator/ScorePage';
+import { SessionPage } from '@/features/simulator/SessionPage';
 import { HomePage } from '@/pages/HomePage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { useAuthStore } from '@/lib/stores/auth-store';
@@ -32,7 +36,10 @@ export const router = createBrowserRouter([
           { path: '/onboarding', element: <PlaceholderPage title="Onboarding" /> },
           { path: '/kb', element: <KbChatPage /> },
           { path: '/kb/c/:id', element: <KbChatPage /> },
-          { path: '/simulator', element: <PlaceholderPage title="Simulator" /> },
+          { path: '/simulator', element: <ScenarioLibraryPage /> },
+          { path: '/simulator/:scenarioId', element: <ScenarioBriefPage /> },
+          { path: '/simulator/session/:id', element: <SessionPage /> },
+          { path: '/simulator/session/:id/score', element: <ScorePage /> },
           { path: '/memory', element: <PlaceholderPage title="Memory" /> },
         ],
       },

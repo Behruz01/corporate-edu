@@ -4,11 +4,13 @@ type KbAskDonePayload = {
   messageId: string;
 };
 
-export type KbAskHandlers = {
+export type SseHandlers<TDone> = {
   onToken: (token: string) => void;
-  onDone: (payload: KbAskDonePayload) => void;
+  onDone: (payload: TDone) => void;
   onError: (error: Error) => void;
 };
+
+export type KbAskHandlers = SseHandlers<KbAskDonePayload>;
 
 type SseFrame = {
   event: string;
@@ -22,28 +24,36 @@ export function streamKbAsk(
   conversationId: string | undefined,
   handlers: KbAskHandlers,
 ): () => void {
+  const body: { question: string; conversationId?: string } = { question };
+  if (conversationId) body.conversationId = conversationId;
+  return streamSse('/kb/ask', body, handlers, isDonePayload, 'KB stream');
+}
+
+export function streamSse<TDone>(
+  path: string,
+  body: Record<string, unknown>,
+  handlers: SseHandlers<TDone>,
+  isDone: (value: unknown) => value is TDone,
+  label = 'SSE stream',
+): () => void {
   const controller = new AbortController();
-
-  void readKbAskStream(question, conversationId, controller.signal, handlers);
-
+  void readSseStream(path, body, controller.signal, handlers, isDone, label);
   return () => controller.abort();
 }
 
-async function readKbAskStream(
-  question: string,
-  conversationId: string | undefined,
+async function readSseStream<TDone>(
+  path: string,
+  body: Record<string, unknown>,
   signal: AbortSignal,
-  handlers: KbAskHandlers,
+  handlers: SseHandlers<TDone>,
+  isDone: (value: unknown) => value is TDone,
+  label: string,
 ): Promise<void> {
   try {
     const token = getAccessToken();
     const headers = new Headers({ 'Content-Type': 'application/json', Accept: 'text/event-stream' });
     if (token) headers.set('Authorization', `Bearer ${token}`);
-
-    const body: { question: string; conversationId?: string } = { question };
-    if (conversationId) body.conversationId = conversationId;
-
-    const response = await fetch(`${apiBaseUrl}/kb/ask`, {
+    const response = await fetch(`${apiBaseUrl}${path}`, {
       method: 'POST',
       headers,
       credentials: 'include',
@@ -52,23 +62,25 @@ async function readKbAskStream(
     });
 
     if (!response.ok) {
-      throw new Error(`KB stream failed with status ${response.status}`);
+      throw new Error(`${label} failed with status ${response.status}`);
     }
     if (!response.body) {
-      throw new Error('KB stream response had no body');
+      throw new Error(`${label} response had no body`);
     }
 
-    await readSseFrames(response.body, signal, handlers);
+    await readSseFrames(response.body, signal, handlers, isDone, label);
   } catch (error) {
     if (signal.aborted) return;
-    handlers.onError(error instanceof Error ? error : new Error('KB stream failed'));
+    handlers.onError(error instanceof Error ? error : new Error(`${label} failed`));
   }
 }
 
-async function readSseFrames(
+async function readSseFrames<TDone>(
   body: ReadableStream<Uint8Array>,
   signal: AbortSignal,
-  handlers: KbAskHandlers,
+  handlers: SseHandlers<TDone>,
+  isDone: (value: unknown) => value is TDone,
+  label: string,
 ): Promise<void> {
   const reader = body.getReader();
   const decoder = new TextDecoder();
@@ -79,33 +91,43 @@ async function readSseFrames(
       const result = await reader.read();
       if (result.done) break;
       buffer += decoder.decode(result.value, { stream: true });
-      buffer = consumeFrames(buffer, handlers);
+      buffer = consumeFrames(buffer, handlers, isDone, label);
     }
 
     buffer += decoder.decode();
-    flushRemainder(buffer, handlers);
+    flushRemainder(buffer, handlers, isDone, label);
   } finally {
     reader.releaseLock();
   }
 }
 
-function consumeFrames(buffer: string, handlers: KbAskHandlers): string {
+function consumeFrames<TDone>(
+  buffer: string,
+  handlers: SseHandlers<TDone>,
+  isDone: (value: unknown) => value is TDone,
+  label: string,
+): string {
   const frames = buffer.split(/\r?\n\r?\n/);
   const remainder = frames.pop() ?? '';
 
   for (const rawFrame of frames) {
     const frame = parseFrame(rawFrame);
     if (!frame) continue;
-    dispatchFrame(frame, handlers);
+    dispatchFrame(frame, handlers, isDone, label);
   }
 
   return remainder;
 }
 
-function flushRemainder(buffer: string, handlers: KbAskHandlers): void {
+function flushRemainder<TDone>(
+  buffer: string,
+  handlers: SseHandlers<TDone>,
+  isDone: (value: unknown) => value is TDone,
+  label: string,
+): void {
   if (buffer.trim().length === 0) return;
   const frame = parseFrame(buffer);
-  if (frame) dispatchFrame(frame, handlers);
+  if (frame) dispatchFrame(frame, handlers, isDone, label);
 }
 
 function parseFrame(rawFrame: string): SseFrame | null {
@@ -126,7 +148,12 @@ function parseFrame(rawFrame: string): SseFrame | null {
   return { event, data: dataLines.join('\n') };
 }
 
-function dispatchFrame(frame: SseFrame, handlers: KbAskHandlers): void {
+function dispatchFrame<TDone>(
+  frame: SseFrame,
+  handlers: SseHandlers<TDone>,
+  isDone: (value: unknown) => value is TDone,
+  label: string,
+): void {
   if (frame.event === 'token') {
     const parsed = parseJson(frame.data);
     handlers.onToken(typeof parsed === 'string' ? parsed : frame.data);
@@ -135,11 +162,11 @@ function dispatchFrame(frame: SseFrame, handlers: KbAskHandlers): void {
 
   if (frame.event === 'done') {
     const parsed = parseJson(frame.data);
-    if (isDonePayload(parsed)) {
+    if (isDone(parsed)) {
       handlers.onDone(parsed);
       return;
     }
-    handlers.onError(new Error('KB stream finished without a message id'));
+    handlers.onError(new Error(`${label} finished with an invalid done payload`));
     return;
   }
 
