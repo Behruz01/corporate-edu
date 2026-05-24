@@ -169,23 +169,37 @@ function ConfidenceBadge({ confidence }: { confidence: number | undefined }): JS
   );
 }
 
+const SOURCE_LABELS: Record<string, string> = {
+  NOTE: 'Eslatma',
+  OFFBOARDING_ANSWER: 'Intervyu',
+  KB_ANSWER: 'Bilim bazasi',
+  SIM_TRANSCRIPT: 'Simulyator',
+};
+
 function Sources({ sources }: { sources: PersonaSourceRef[] }): JSX.Element {
   const { t } = useTranslation('memory');
   return (
-    <div className="mt-4 space-y-2 border-t pt-3">
-      <div className="text-xs font-medium text-muted-foreground">{t('personas.sources')}</div>
-      {sources.map((source) => (
-        <Card key={source.id} className="rounded-md">
-          <CardHeader className="p-3 pb-1">
-            <CardTitle className="text-xs">
-              {source.source} · {Math.round(source.similarity * 100)}%
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-3 pt-1 text-xs leading-5 text-muted-foreground">{source.snippet}</CardContent>
-        </Card>
-      ))}
+    <div className="mt-3 border-t pt-3">
+      <div className="mb-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+        {t('personas.sources')}
+      </div>
+      <div className="flex flex-col gap-1.5">
+        {sources.map((source) => (
+          <div key={source.id} className="flex items-start gap-2 text-xs leading-5 text-muted-foreground">
+            <span className="mt-0.5 shrink-0 rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
+              {SOURCE_LABELS[source.source] ?? source.source}
+            </span>
+            <span className="line-clamp-2">{truncate(source.snippet, 130)}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
+}
+
+function truncate(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  return clean.length > max ? `${clean.slice(0, max)}…` : clean;
 }
 
 function TagRow({ tags }: { tags: string[] }): JSX.Element {
