@@ -12,6 +12,26 @@
   },
   "actions": { "save": "Saqlash", "cancel": "Bekor qilish", "logout": "Chiqish", "submit": "Yuborish" },
   "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" },
+  "home": {
+    "eyebrow": "Bugungi o'quv markazi",
+    "fallbackName": "hamkasb",
+    "welcome": "Xush kelibsiz, {{name}}",
+    "subtitle": "Adaptatsiya, bilim bazasi va simulyator mashqlari bo'yicha bugungi holatingiz shu yerda jamlangan.",
+    "stats": {
+      "points": "Ballar",
+      "pointsDescription": "Jami to'plangan ballar.",
+      "onboarding": "Adaptatsiya",
+      "onboardingDescription": "Joriy onboarding kuningiz.",
+      "badges": "Nishonlar",
+      "badgesDescription": "Qo'lga kiritilgan yutuqlar.",
+      "nextStep": "Keyingi qadam",
+      "nextStepDescription": "Adaptatsiyani davom ettiring va keyingi topshiriqni yakunlang.",
+      "nextStepAction": "Adaptatsiyaga o'tish",
+      "dayProgress": "Kun {{current}} / {{total}}",
+      "notStarted": "Boshlanmagan",
+      "unavailable": "Mavjud emas"
+    }
+  },
   "errors": {
     "generic": "Nimadir xato ketdi. Iltimos qaytadan urinib ko'ring.",
     "unauthorized": "Sessiya tugadi. Qayta kiring."

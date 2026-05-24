@@ -21,7 +21,8 @@
     "tags": "Teglar, vergul bilan",
     "placeholder": "Qaysi qaror, jarayon, saboq yoki loyiha konteksti esda qolishi kerak?",
     "save": "Yozuvni saqlash",
-    "delete": "Yozuvni o'chirish"
+    "delete": "Yozuvni o'chirish",
+    "empty": "Hali yozuv yo'q. Loyiha bo'yicha birinchi eslatmangizni qo'shing."
   },
   "noteKind": {
     "PROJECT_REFLECTION": "Loyiha xulosasi",
@@ -36,6 +37,7 @@
   },
   "personas": {
     "ask": "Personadan so'rash",
+    "empty": "Hali persona yo'q. Xotira yozuvlari va ekspertiza teglari paydo bo'lganda bu yerda ko'rinadi.",
     "back": "Xotiraga qaytish",
     "confidenceReady": "RAG ishonch yoqilgan",
     "chat": "Persona chat",

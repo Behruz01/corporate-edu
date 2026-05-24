@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { AlertTriangle, ArrowLeft, MessageSquareWarning, ShieldAlert } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, MessageSquareWarning, ShieldAlert } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -72,7 +72,7 @@ export function ReportsPage(): JSX.Element {
               <section className="space-y-2">
                 <h2 className="text-sm font-medium">{t('reports.departing')}</h2>
                 {(knowledgeRiskQuery.data?.departingWithIncompleteOffboarding ?? []).length === 0 ? (
-                  <div className="text-sm text-muted-foreground">{t('states.empty')}</div>
+                  <KnowledgeRiskEmpty text={t('reports.emptyDeparting')} />
                 ) : null}
                 {knowledgeRiskQuery.data?.departingWithIncompleteOffboarding.map((user) => (
                   <div key={user.id} className="flex items-center justify-between gap-3 rounded-md border p-3 text-sm">
@@ -88,7 +88,7 @@ export function ReportsPage(): JSX.Element {
               <section className="space-y-2">
                 <h2 className="text-sm font-medium">{t('reports.highContribution')}</h2>
                 {(knowledgeRiskQuery.data?.highContributionUsers ?? []).length === 0 ? (
-                  <div className="text-sm text-muted-foreground">{t('states.empty')}</div>
+                  <KnowledgeRiskEmpty text={t('reports.emptyHighContribution')} />
                 ) : null}
                 {knowledgeRiskQuery.data?.highContributionUsers.map((user) => (
                   <div key={user.id} className="flex items-center justify-between gap-3 text-sm">
@@ -101,7 +101,7 @@ export function ReportsPage(): JSX.Element {
               <section className="space-y-2">
                 <h2 className="text-sm font-medium">{t('reports.projectsNoNotes')}</h2>
                 {(knowledgeRiskQuery.data?.projectsWithNoNotes ?? []).length === 0 ? (
-                  <div className="text-sm text-muted-foreground">{t('states.empty')}</div>
+                  <KnowledgeRiskEmpty text={t('reports.emptyProjectsNoNotes')} />
                 ) : null}
                 {knowledgeRiskQuery.data?.projectsWithNoNotes.slice(0, 5).map((project) => (
                   <div key={project.id} className="text-sm">
@@ -139,6 +139,15 @@ export function ReportsPage(): JSX.Element {
           </Card>
         </div>
       </QueryState>
+    </div>
+  );
+}
+
+function KnowledgeRiskEmpty({ text }: { text: string }): JSX.Element {
+  return (
+    <div className="animate-rise flex items-start gap-3 rounded-md border border-dashed bg-muted/35 px-3 py-4 text-sm text-muted-foreground">
+      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+      <span className="leading-6">{text}</span>
     </div>
   );
 }

@@ -12,6 +12,26 @@
   },
   "actions": { "save": "Save", "cancel": "Cancel", "logout": "Logout", "submit": "Submit" },
   "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" },
+  "home": {
+    "eyebrow": "Today in learning",
+    "fallbackName": "there",
+    "welcome": "Welcome, {{name}}",
+    "subtitle": "Your onboarding, knowledge base, and simulator progress are gathered here for the day.",
+    "stats": {
+      "points": "Points",
+      "pointsDescription": "Total points earned.",
+      "onboarding": "Onboarding",
+      "onboardingDescription": "Your current onboarding day.",
+      "badges": "Badges earned",
+      "badgesDescription": "Achievements unlocked.",
+      "nextStep": "Next step",
+      "nextStepDescription": "Continue onboarding and complete the next task.",
+      "nextStepAction": "Open onboarding",
+      "dayProgress": "Day {{current}} / {{total}}",
+      "notStarted": "Not started",
+      "unavailable": "Unavailable"
+    }
+  },
   "errors": {
     "generic": "Something went wrong. Please try again.",
     "unauthorized": "Session expired. Please sign in again."

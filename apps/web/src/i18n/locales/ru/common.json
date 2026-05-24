@@ -12,6 +12,26 @@
   },
   "actions": { "save": "Сохранить", "cancel": "Отмена", "logout": "Выйти", "submit": "Отправить" },
   "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" },
+  "home": {
+    "eyebrow": "Учебный центр на сегодня",
+    "fallbackName": "коллега",
+    "welcome": "Добро пожаловать, {{name}}",
+    "subtitle": "Здесь собраны ваш прогресс по онбордингу, базе знаний и тренировкам в симуляторе.",
+    "stats": {
+      "points": "Баллы",
+      "pointsDescription": "Всего заработанных баллов.",
+      "onboarding": "Онбординг",
+      "onboardingDescription": "Ваш текущий день онбординга.",
+      "badges": "Значки",
+      "badgesDescription": "Полученные достижения.",
+      "nextStep": "Следующий шаг",
+      "nextStepDescription": "Продолжите онбординг и завершите следующее задание.",
+      "nextStepAction": "Перейти к онбордингу",
+      "dayProgress": "День {{current}} / {{total}}",
+      "notStarted": "Не начат",
+      "unavailable": "Недоступно"
+    }
+  },
   "errors": {
     "generic": "Что-то пошло не так. Повторите попытку.",
     "unauthorized": "Сессия истекла. Войдите снова."

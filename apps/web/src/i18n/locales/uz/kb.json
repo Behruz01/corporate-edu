@@ -6,5 +6,15 @@
   "helpful": "Foydali",
   "notHelpful": "Foydali emas",
   "newChat": "Yangi suhbat",
-  "emptyState": "Bilim bazasidan savol bering."
+  "emptyState": "Bilim bazasidan savol bering.",
+  "empty": {
+    "heading": "Bilim bazasidan boshlang",
+    "subtitle": "CorpMind hujjatlaridan tez javob olish uchun savol yozing yoki tayyor mavzulardan birini tanlang.",
+    "prompts": {
+      "prompt1": "Yuridik shaxslar uchun kredit foiz stavkalari qanday?",
+      "prompt2": "Valyuta o'tkazmalari uchun kunlik limit qancha?",
+      "prompt3": "Hisob ochish uchun qanday hujjatlar kerak?",
+      "prompt4": "Shubhali tranzaksiyani qanday aniqlayman?"
+    }
+  }
 }

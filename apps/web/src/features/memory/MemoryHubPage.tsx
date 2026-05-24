@@ -119,7 +119,7 @@ export function MemoryHubPage(): JSX.Element {
           </Card>
 
           <section className="space-y-3">
-            <State loading={notesQuery.isLoading} error={notesQuery.isError} empty={!notesQuery.isLoading && (notesQuery.data ?? []).length === 0} />
+            <State loading={notesQuery.isLoading} error={notesQuery.isError} empty={!notesQuery.isLoading && (notesQuery.data ?? []).length === 0} kind="notes" />
             {(notesQuery.data ?? []).map((note) => (
               <Card key={note.id} className="rounded-md">
                 <CardHeader className="pb-3">
@@ -143,7 +143,7 @@ export function MemoryHubPage(): JSX.Element {
         </div>
       ) : (
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          <State loading={personasQuery.isLoading} error={personasQuery.isError} empty={!personasQuery.isLoading && (personasQuery.data ?? []).length === 0} />
+          <State loading={personasQuery.isLoading} error={personasQuery.isError} empty={!personasQuery.isLoading && (personasQuery.data ?? []).length === 0} kind="personas" />
           {(personasQuery.data ?? []).map((persona) => (
             <Card key={persona.id} className="rounded-md">
               <CardHeader>
@@ -169,10 +169,34 @@ function TagRow({ tags }: { tags: string[] }): JSX.Element {
   return <div className="flex flex-wrap gap-2">{tags.map((tag) => <span key={tag} className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">{tag}</span>)}</div>;
 }
 
-function State({ loading, error, empty }: { loading: boolean; error: boolean; empty: boolean }): JSX.Element | null {
+function State({
+  loading,
+  error,
+  empty,
+  kind,
+}: {
+  loading: boolean;
+  error: boolean;
+  empty: boolean;
+  kind: 'notes' | 'personas';
+}): JSX.Element | null {
   const { t } = useTranslation('memory');
   if (loading) return <div className="text-sm text-muted-foreground">{t('common.loading')}</div>;
   if (error) return <div className="text-sm text-destructive">{t('common.error')}</div>;
-  if (empty) return <div className="text-sm text-muted-foreground">{t('common.empty')}</div>;
+  if (empty) {
+    const Icon = kind === 'notes' ? BookOpenText : UserRound;
+    const wrapperClassName = kind === 'personas' ? 'md:col-span-2 xl:col-span-3' : '';
+
+    return (
+      <div className={wrapperClassName}>
+        <div className="animate-rise flex flex-col items-center justify-center rounded-md border border-dashed bg-background/80 px-6 py-10 text-center shadow-soft">
+          <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-md bg-accent/20 text-primary">
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <p className="max-w-md text-sm leading-6 text-muted-foreground">{t(`${kind}.empty`)}</p>
+        </div>
+      </div>
+    );
+  }
   return null;
 }

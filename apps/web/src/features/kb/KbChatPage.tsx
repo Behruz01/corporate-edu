@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Send } from 'lucide-react';
+import { BookOpen, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -20,6 +20,7 @@ type RateResponse = {
 };
 
 const conversationsKey = ['kb', 'conversations'] as const;
+const suggestedPromptKeys = ['prompt1', 'prompt2', 'prompt3', 'prompt4'] as const;
 
 export function KbChatPage(): JSX.Element {
   const { t } = useTranslation('kb');
@@ -34,6 +35,7 @@ export function KbChatPage(): JSX.Element {
   const [lastDoneMessageId, setLastDoneMessageId] = useState<string | null>(null);
   const abortRef = useRef<(() => void) | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
+  const questionInputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const conversationsQuery = useQuery({
     queryKey: conversationsKey,
@@ -120,6 +122,11 @@ export function KbChatPage(): JSX.Element {
     rateMutation.mutate({ messageId, rating });
   }
 
+  function onSuggestedPrompt(prompt: string): void {
+    setQuestion(prompt);
+    requestAnimationFrame(() => questionInputRef.current?.focus());
+  }
+
   return (
     <div className="flex h-[calc(100vh-7rem)] min-h-[560px] overflow-hidden rounded-md border bg-background">
       <ConversationList
@@ -142,9 +149,31 @@ export function KbChatPage(): JSX.Element {
           {messagesQuery.isError ? (
             <div className="text-sm text-destructive">{t('emptyState')}</div>
           ) : null}
-          {!messagesQuery.isLoading && messages.length === 0 ? (
-            <div className="flex h-full items-center justify-center text-center text-sm text-muted-foreground">
-              {t('emptyState')}
+          {!messagesQuery.isLoading && !messagesQuery.isError && messages.length === 0 ? (
+            <div className="flex min-h-full items-center justify-center py-12">
+              <div className="animate-rise max-w-2xl text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-accent/20 text-primary">
+                  <BookOpen className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <h2 className="font-display text-lg font-semibold text-foreground">{t('empty.heading')}</h2>
+                <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-muted-foreground">{t('empty.subtitle')}</p>
+                <div className="mt-5 flex flex-wrap justify-center gap-2">
+                  {suggestedPromptKeys.map((key) => {
+                    const prompt = t(`empty.prompts.${key}`);
+                    return (
+                      <Button
+                        key={key}
+                        type="button"
+                        variant="outline"
+                        className="h-auto max-w-full justify-start whitespace-normal rounded-md px-3 py-2 text-left text-sm shadow-soft"
+                        onClick={() => onSuggestedPrompt(prompt)}
+                      >
+                        {prompt}
+                      </Button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           ) : null}
           <div className="space-y-5">
@@ -165,6 +194,7 @@ export function KbChatPage(): JSX.Element {
 
         <form className="flex gap-2 border-t p-4" onSubmit={(event) => void onSubmit(event)}>
           <textarea
+            ref={questionInputRef}
             className="min-h-11 max-h-32 flex-1 resize-y rounded-md border border-input bg-background px-3 py-2 text-sm leading-6 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             placeholder={t('placeholder')}
             value={question}

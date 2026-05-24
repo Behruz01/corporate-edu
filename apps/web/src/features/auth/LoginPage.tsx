@@ -45,30 +45,35 @@ export function LoginPage(): JSX.Element {
               'radial-gradient(700px 380px at 18% 12%, hsl(174 60% 38% / 0.35), transparent 60%), radial-gradient(560px 360px at 90% 100%, hsl(38 92% 50% / 0.18), transparent 55%)',
           }}
         />
-        <div className="relative flex items-center gap-3">
+        <div className="relative flex items-center gap-3 text-white">
           <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand font-display text-lg font-bold text-[hsl(185_47%_9%)] shadow-[0_4px_18px_hsl(38_92%_50%/0.4)]">
             CM
           </div>
-          <div className="font-display text-xl font-bold tracking-tight text-white">{t('common:appName')}</div>
+          <div className="font-display text-xl font-bold tracking-tight text-white">
+            {t('common:appName')}
+          </div>
         </div>
 
-        <div className="relative max-w-md space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sidebar-border bg-white/5 px-3 py-1 text-xs font-medium text-sidebar-foreground/80">
-            <Sparkles className="h-3.5 w-3.5 text-brand" /> AI-powered corporate learning
-          </div>
-          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white">
-            Bilim. Mahorat.
-            <br />
-            <span className="text-brand">Tajriba saqlanadi.</span>
-          </h1>
-          <p className="text-sm leading-relaxed text-sidebar-foreground/70">
-            SQB Bank uchun adaptatsiya, bilim bazasi, AI roleplay simulyator va xodimlar
-            tajribasini saqlovchi yagona platforma.
-          </p>
-          <div className="flex flex-col gap-3 pt-2 text-sm text-sidebar-foreground/85">
-            <Feature icon={BookOpen} text="Hujjatlardan asoslangan bilim assistenti" />
-            <Feature icon={Drama} text="AI bilan real vaziyat mashqi va baholash" />
-            <Feature icon={Brain} text="Xodim tajribasini saqlovchi AI persona" />
+        <div className="relative max-w-md rounded-2xl border border-white/10 bg-[hsl(185_47%_9%/0.42)] p-6 shadow-[0_24px_80px_hsl(185_55%_4%/0.35)] backdrop-blur-sm">
+          <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[hsl(185_47%_9%/0.34)] via-[hsl(185_47%_9%/0.16)] to-transparent" />
+          <div className="relative space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sidebar-border bg-white/5 px-3 py-1 text-xs font-medium text-sidebar-foreground/80">
+              <Sparkles className="h-3.5 w-3.5 text-brand" /> AI-powered corporate learning
+            </div>
+            <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white">
+              Bilim. Mahorat.
+              <br />
+              <span className="text-brand">Tajriba saqlanadi.</span>
+            </h1>
+            <p className="text-sm leading-relaxed text-sidebar-foreground/70">
+              SQB Bank uchun adaptatsiya, bilim bazasi, AI roleplay simulyator va xodimlar
+              tajribasini saqlovchi yagona platforma.
+            </p>
+            <div className="flex flex-col gap-3 pt-2 text-sm text-sidebar-foreground/85">
+              <Feature icon={BookOpen} text="Hujjatlardan asoslangan bilim assistenti" />
+              <Feature icon={Drama} text="AI bilan real vaziyat mashqi va baholash" />
+              <Feature icon={Brain} text="Xodim tajribasini saqlovchi AI persona" />
+            </div>
           </div>
         </div>
 
@@ -82,9 +87,13 @@ export function LoginPage(): JSX.Element {
         </div>
         <div className="w-full max-w-sm animate-rise">
           <div className="mb-8 lg:hidden">
-            <div className="font-display text-2xl font-bold tracking-tight text-primary">{t('common:appName')}</div>
+            <div className="font-display text-2xl font-bold tracking-tight text-primary">
+              {t('common:appName')}
+            </div>
           </div>
-          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground">{t('login.title')}</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground">
+            {t('login.title')}
+          </h2>
           <p className="mt-1.5 text-sm text-muted-foreground">{t('login.subtitle')}</p>
 
           <form className="mt-8 space-y-5" onSubmit={(e) => void onSubmit(e)}>

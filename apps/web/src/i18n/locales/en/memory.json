@@ -21,7 +21,8 @@
     "tags": "Tags, comma separated",
     "placeholder": "What decision, process, lesson, or project context should others remember?",
     "save": "Save note",
-    "delete": "Delete note"
+    "delete": "Delete note",
+    "empty": "No notes yet. Add your first project memory when something should be preserved."
   },
   "noteKind": {
     "PROJECT_REFLECTION": "Project reflection",
@@ -36,6 +37,7 @@
   },
   "personas": {
     "ask": "Ask persona",
+    "empty": "No personas yet. Memory notes and expertise tags will appear here once they are available.",
     "back": "Back to memory",
     "confidenceReady": "RAG confidence enabled",
     "chat": "Persona chat",

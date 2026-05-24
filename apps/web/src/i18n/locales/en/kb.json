@@ -6,5 +6,15 @@
   "helpful": "Helpful",
   "notHelpful": "Not helpful",
   "newChat": "New chat",
-  "emptyState": "Ask the knowledge base a question."
+  "emptyState": "Ask the knowledge base a question.",
+  "empty": {
+    "heading": "Start with the knowledge base",
+    "subtitle": "Ask a question across CorpMind documents or choose one of the suggested topics.",
+    "prompts": {
+      "prompt1": "What are the interest rates for business loans?",
+      "prompt2": "What is the daily limit for foreign currency transfers?",
+      "prompt3": "Which documents are required to open an account?",
+      "prompt4": "How do I identify a suspicious transaction?"
+    }
+  }
 }
