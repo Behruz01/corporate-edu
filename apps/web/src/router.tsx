@@ -22,6 +22,7 @@ import { TeamOverviewPage } from '@/features/dashboard/TeamOverviewPage';
 import { EmployeeDetailPage } from '@/features/dashboard/EmployeeDetailPage';
 import { ReportsPage } from '@/features/dashboard/ReportsPage';
 import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage';
+import { AdminAnalyticsPage } from '@/features/dashboard/AdminAnalyticsPage';
 import { LeaderboardPage } from '@/features/gamification/LeaderboardPage';
 import { UsersPage as AdminUsersPage } from '@/features/admin/UsersPage';
 import { DocumentsPage as AdminDocumentsPage } from '@/features/admin/DocumentsPage';
@@ -92,6 +93,7 @@ export const router = createBrowserRouter([
             element: <AdminShell />,
             children: [
               { path: '/admin', element: <AdminDashboardPage /> },
+              { path: '/admin/analytics', element: <AdminAnalyticsPage /> },
               { path: '/admin/users', element: <AdminUsersPage /> },
               { path: '/admin/documents', element: <AdminDocumentsPage /> },
               { path: '/admin/scenarios', element: <AdminScenariosPage /> },

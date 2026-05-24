@@ -7,6 +7,7 @@ import {
   Drama,
   GraduationCap,
   FolderKanban,
+  BarChart3,
   Settings,
   LogOut,
 } from 'lucide-react';
@@ -24,6 +25,7 @@ const NAV = [
   { to: '/admin/scenarios', label: 'Stsenariylar', icon: Drama },
   { to: '/admin/onboarding', label: 'Adaptatsiya', icon: GraduationCap },
   { to: '/admin/projects', label: 'Loyihalar', icon: FolderKanban },
+  { to: '/admin/analytics', label: 'Statistika', icon: BarChart3 },
   { to: '/admin/settings', label: 'Sozlamalar', icon: Settings },
 ];
 
