@@ -16,6 +16,12 @@ import { ProjectDetailPage } from '@/features/memory/ProjectDetailPage';
 import { PersonaAskPage } from '@/features/memory/PersonaAskPage';
 import { WhoKnowsPage } from '@/features/memory/WhoKnowsPage';
 import { OffboardingPage } from '@/features/memory/OffboardingPage';
+import { OnboardingPage } from '@/features/onboarding/OnboardingPage';
+import { OnboardingHistoryPage } from '@/features/onboarding/OnboardingHistoryPage';
+import { TeamOverviewPage } from '@/features/dashboard/TeamOverviewPage';
+import { EmployeeDetailPage } from '@/features/dashboard/EmployeeDetailPage';
+import { ReportsPage } from '@/features/dashboard/ReportsPage';
+import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage';
 import { HomePage } from '@/pages/HomePage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { useAuthStore } from '@/lib/stores/auth-store';
@@ -39,7 +45,8 @@ export const router = createBrowserRouter([
         element: <EmployeeShell />,
         children: [
           { path: '/home', element: <HomePage /> },
-          { path: '/onboarding', element: <PlaceholderPage title="Onboarding" /> },
+          { path: '/onboarding', element: <OnboardingPage /> },
+          { path: '/onboarding/history', element: <OnboardingHistoryPage /> },
           { path: '/kb', element: <KbChatPage /> },
           { path: '/kb/c/:id', element: <KbChatPage /> },
           { path: '/simulator', element: <ScenarioLibraryPage /> },
@@ -60,7 +67,11 @@ export const router = createBrowserRouter([
         children: [
           {
             element: <ManagerShell />,
-            children: [{ path: '/team', element: <PlaceholderPage title="Team" /> }],
+            children: [
+              { path: '/team', element: <TeamOverviewPage /> },
+              { path: '/team/reports', element: <ReportsPage /> },
+              { path: '/team/employee/:id', element: <EmployeeDetailPage /> },
+            ],
           },
         ],
       },
@@ -71,7 +82,7 @@ export const router = createBrowserRouter([
           {
             element: <AdminShell />,
             children: [
-              { path: '/admin', element: <PlaceholderPage title="Admin dashboard" /> },
+              { path: '/admin', element: <AdminDashboardPage /> },
               { path: '/admin/users', element: <PlaceholderPage title="Users" /> },
               { path: '/admin/documents', element: <PlaceholderPage title="Documents" /> },
               { path: '/admin/scenarios', element: <PlaceholderPage title="Scenarios" /> },

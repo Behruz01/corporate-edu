@@ -42,7 +42,12 @@
     "emptyChat": "Xodim xotirasiga tayangan savol bering.",
     "placeholder": "Jarayon, qaror yoki loyiha haqida so'rang...",
     "send": "So'rash",
-    "confidence": "Ishonch {{value}}%"
+    "confidence": "Ishonch {{value}}%",
+    "confidencePending": "Ishonch kutilmoqda",
+    "emptyAsk": "Xodim xotirasiga tayangan savol bering.",
+    "typing": "O'ylanmoqda...",
+    "you": "Siz",
+    "sources": "Manbalar"
   },
   "projects": {
     "title": "Xotira loyihalari",
@@ -76,12 +81,13 @@
     "title": "Offboarding xotira intervyusi",
     "back": "Xotiraga qaytish",
     "none": "Sizga offboarding intervyu biriktirilmagan.",
-    "progress": "{{done}} / {{total}} javob berildi",
+    "progress": "{{answered}} / {{total}} javob berildi",
     "readyTitle": "Boshlashga tayyor",
     "readyBody": "Savollarga ketma-ket javob bering. Matn yozilayotganda avtomatik saqlanadi.",
     "start": "Intervyuni boshlash",
     "question": "{{current}} / {{total}} savol",
     "answer": "Javobingizni yozing...",
+    "answerPlaceholder": "Javobingizni yozing...",
     "previous": "Oldingi",
     "save": "Saqlash",
     "next": "Keyingi",

@@ -42,7 +42,12 @@
     "emptyChat": "Ask a question grounded in this employee's memory.",
     "placeholder": "Ask about a process, decision, or project...",
     "send": "Ask",
-    "confidence": "Confidence {{value}}%"
+    "confidence": "Confidence {{value}}%",
+    "confidencePending": "Confidence pending",
+    "emptyAsk": "Ask a question grounded in this employee's memory.",
+    "typing": "Thinking...",
+    "you": "You",
+    "sources": "Sources"
   },
   "projects": {
     "title": "Memory projects",
@@ -76,12 +81,13 @@
     "title": "Offboarding memory interview",
     "back": "Back to memory",
     "none": "You do not have an assigned offboarding interview.",
-    "progress": "{{done}} of {{total}} answered",
+    "progress": "{{answered}} of {{total}} answered",
     "readyTitle": "Ready to start",
     "readyBody": "Answer question by question. Drafts autosave while you type.",
     "start": "Start interview",
     "question": "Question {{current}} of {{total}}",
     "answer": "Write your answer...",
+    "answerPlaceholder": "Write your answer...",
     "previous": "Previous",
     "save": "Save",
     "next": "Next",
