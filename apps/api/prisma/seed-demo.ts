@@ -769,8 +769,12 @@ async function seedSessions(
           create: {
             overall: session.overall,
             dimensionScores: toJson(session.dimensionScores),
-            feedback: toJson(session.feedback),
-            weakAreas: toJson(session.weakAreas),
+            feedback: toJson(
+              session.feedback.map((comment) => ({ dimension: 'Umumiy', comment, severity: 'minor' })),
+            ),
+            weakAreas: toJson(
+              session.weakAreas.map((topic) => ({ topic, suggestPersonaTags: [topic] })),
+            ),
           },
         },
       },

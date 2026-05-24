@@ -82,7 +82,7 @@ export function ScorePage(): JSX.Element {
             <CardTitle>{t('score.feedback')}</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-3 md:grid-cols-2">
-            {score.feedback.map((item) => (
+            {(score.feedback ?? []).map((item) => (
               <div key={`${item.dimension}-${item.comment}`} className="rounded-md border p-4">
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-sm font-medium">{item.dimension}</span>
@@ -110,8 +110,8 @@ function KnowledgeBridge({ score }: { score: SimulatorScore }): JSX.Element {
         <CardTitle>{t('score.bridge')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        {score.weakAreas.length === 0 ? <div className="text-sm text-muted-foreground">{t('score.noWeakAreas')}</div> : null}
-        {score.weakAreas.map((area) => {
+        {(score.weakAreas ?? []).length === 0 ? <div className="text-sm text-muted-foreground">{t('score.noWeakAreas')}</div> : null}
+        {(score.weakAreas ?? []).map((area) => {
           const query = area.suggestKbQuery ?? area.topic;
           return (
             <div key={area.topic} className="rounded-md border p-4">
@@ -123,7 +123,7 @@ function KnowledgeBridge({ score }: { score: SimulatorScore }): JSX.Element {
                     {t('score.openKb')}
                   </Link>
                 </Button>
-                {area.suggestPersonaTags.map((tag) => (
+                {(area.suggestPersonaTags ?? []).map((tag) => (
                   <Button key={tag} asChild variant="ghost" size="sm">
                     <Link to={`/memory?tag=${encodeURIComponent(tag)}`}>
                       <MessageSquare className="h-4 w-4" aria-hidden="true" />

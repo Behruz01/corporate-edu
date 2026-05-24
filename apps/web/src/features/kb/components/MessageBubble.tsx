@@ -48,7 +48,7 @@ export function MessageBubble({
             isUser ? 'bg-primary text-primary-foreground' : 'border bg-card text-card-foreground',
           )}
         >
-          {message.content}
+          {isUser ? message.content : cleanAnswer(message.content)}
         </div>
 
         {!isUser && message.citations.length > 0 ? (
@@ -98,4 +98,14 @@ export function MessageBubble({
 function normalizeRating(rating: number | null): KbRating {
   if (rating === 1 || rating === -1) return rating;
   return 0;
+}
+
+// The model appends a fenced JSON citations block; strip it from the visible answer
+// (citations are rendered separately as chips). Also drop inline [^n] markers.
+function cleanAnswer(content: string): string {
+  return content
+    .replace(/```(?:json)?\s*[\s\S]*?"citations"[\s\S]*?```/gi, '')
+    .replace(/```(?:json)?\s*[\s\S]*?"citations"[\s\S]*$/gi, '')
+    .replace(/\[\^\d+\]/g, '')
+    .trimEnd();
 }
