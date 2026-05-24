@@ -50,7 +50,7 @@ void i18n
       ru: { common: ruCommon, auth: ruAuth, kb: ruKb, simulator: ruSimulator, memory: ruMemory, onboarding: ruOnboarding, dashboard: ruDashboard, gamification: ruGamification, admin: ruAdmin, voice: ruVoice, notifications: ruNotifications },
       en: { common: enCommon, auth: enAuth, kb: enKb, simulator: enSimulator, memory: enMemory, onboarding: enOnboarding, dashboard: enDashboard, gamification: enGamification, admin: enAdmin, voice: enVoice, notifications: enNotifications },
     },
-    detection: { order: ['localStorage', 'navigator'], caches: ['localStorage'] },
+    detection: { order: ['localStorage'], caches: ['localStorage'] },
   });
 
 export default i18n;
