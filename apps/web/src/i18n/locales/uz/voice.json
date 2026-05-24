@@ -1,6 +1,8 @@
 {
   "record": "Ovoz yozish",
   "stop": "To'xtatish",
+  "speak": "Ovozda o'qish",
+  "speaking": "Audio tayyorlanmoqda",
   "processing": "Matnga aylantirilmoqda",
   "micDenied": "Mikrofonga ruxsat berilmadi",
   "error": "Ovozni matnga aylantirib bo'lmadi"

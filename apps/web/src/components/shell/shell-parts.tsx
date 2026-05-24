@@ -27,10 +27,6 @@ export function Sidebar({ children, brandSubtitle }: { children: ReactNode; bran
     <aside className="bg-grain hidden w-64 shrink-0 flex-col gap-6 bg-sidebar px-4 py-6 text-sidebar-foreground md:flex">
       <BrandMark subtitle={brandSubtitle} />
       <div className="flex-1 overflow-y-auto">{children}</div>
-      <div className="px-3 pt-4 text-[11px] leading-relaxed text-sidebar-muted">
-        <div className="mb-2 h-px bg-sidebar-border" />
-        SQB Bank · Demo
-      </div>
     </aside>
   );
 }

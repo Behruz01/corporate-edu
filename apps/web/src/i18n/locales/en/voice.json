@@ -1,6 +1,8 @@
 {
   "record": "Record voice",
-  "stop": "Stop recording",
+  "stop": "Stop",
+  "speak": "Read aloud",
+  "speaking": "Preparing audio",
   "processing": "Transcribing",
   "micDenied": "Microphone access was denied",
   "error": "Could not transcribe voice"

@@ -76,8 +76,6 @@ export function LoginPage(): JSX.Element {
             </div>
           </div>
         </div>
-
-        <div className="relative text-xs text-sidebar-muted">© 2026 CorpMind · SQB Bank demo</div>
       </div>
 
       {/* Form panel */}

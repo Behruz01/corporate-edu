@@ -1,6 +1,7 @@
 import { ThumbsDown, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CitationChip, type Citation } from '@/features/kb/components/CitationChip';
+import SpeakButton from '@/features/voice/SpeakButton';
 import { cn } from '@/lib/cn';
 
 export type KbMessageRole = 'USER' | 'ASSISTANT' | 'SYSTEM';
@@ -38,6 +39,7 @@ export function MessageBubble({
 }: MessageBubbleProps): JSX.Element {
   const isUser = message.role === 'USER';
   const currentRating = normalizeRating(message.rating);
+  const answerText = cleanAnswer(message.content);
 
   return (
     <div className={cn('flex w-full', isUser ? 'justify-end' : 'justify-start')}>
@@ -48,7 +50,7 @@ export function MessageBubble({
             isUser ? 'bg-primary text-primary-foreground' : 'border bg-card text-card-foreground',
           )}
         >
-          {isUser ? message.content : cleanAnswer(message.content)}
+          {isUser ? message.content : answerText}
         </div>
 
         {!isUser && message.citations.length > 0 ? (
@@ -64,6 +66,7 @@ export function MessageBubble({
 
         {!isUser ? (
           <div className="flex items-center gap-1">
+            <SpeakButton text={answerText} />
             <Button
               type="button"
               variant={currentRating === 1 ? 'outline' : 'ghost'}

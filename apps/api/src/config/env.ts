@@ -20,6 +20,8 @@ const envSchema = z.object({
   OPENAI_MODEL_SCORING: z.string().default('gpt-4o'),
   OPENAI_MODEL_EMBED: z.string().default('text-embedding-3-small'),
   OPENAI_MODEL_STT: z.string().default('whisper-1'),
+  OPENAI_MODEL_TTS: z.string().default('gpt-4o-mini-tts'),
+  OPENAI_TTS_VOICE: z.string().default('alloy'),
   OPENAI_DAILY_BUDGET_USD: z.coerce.number().min(0).default(15),
 
   STORAGE_DRIVER: z.enum(['local', 's3']).default('local'),

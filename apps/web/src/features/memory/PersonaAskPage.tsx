@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MicButton } from '@/features/voice/MicButton';
+import SpeakButton from '@/features/voice/SpeakButton';
 import { fetchPersona, streamPersonaAsk } from './api';
 import type { PersonaAskDonePayload, PersonaSourceRef } from './types';
 
@@ -121,6 +122,11 @@ export function PersonaAskPage(): JSX.Element {
                   {message.role === 'USER' ? t('personas.you') : persona.user.fullName}
                 </div>
                 <p className="whitespace-pre-wrap">{message.text || t('personas.typing')}</p>
+                {message.role === 'PERSONA' ? (
+                  <div className="mt-2 flex justify-end">
+                    <SpeakButton text={message.text} />
+                  </div>
+                ) : null}
                 {message.sources && message.sources.length > 0 ? <Sources sources={message.sources} /> : null}
               </div>
             </article>
